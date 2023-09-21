@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../service/auth/auth.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
-import Swal from 'sweetalert2';
 import { TosterService } from 'src/app/service/toster/toster.service';
 
 
@@ -77,7 +76,7 @@ export class LoginComponent implements OnInit {
 
   }
 
-  
+
   ngOnDestroy(): void {
 
     if (this.subscription) {

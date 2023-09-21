@@ -2,11 +2,9 @@ import { Component, OnInit,OnDestroy } from '@angular/core';
 import { SubscriptionService } from '../../service/subscription/subscription.service';
 import { Observable, Subscription, catchError, map, of, switchMap } from 'rxjs';
 import { planInterface } from 'src/app/models/plan.interface';
-import { Stripe, StripeElements, StripeElementsOptionsClientSecret, StripeElementsOptionsMode,loadStripe } from '@stripe/stripe-js'; // Import Stripe types
 import { TosterService } from 'src/app/service/toster/toster.service';
 import { Router } from '@angular/router';
 
-const stripePromise = loadStripe('pk_test_51Mh7RpSIEFc0MWNJUaJD2ZrKMcRe6l2HXcICU8IXrf7hSl69Ls19Lz8x8XR49Y7kYOPBL7gTgkBoRWMr0PZenvmm007mg2akRe');
 
 
 @Component({

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProfileService } from '../../service/profile/profile.service';
 import { Subscription } from 'rxjs';
+import { userInterface } from 'src/app/models/fetch.message';
 
 @Component({
   selector: 'app-profile',
@@ -10,16 +11,32 @@ import { Subscription } from 'rxjs';
 export class ProfileComponent implements OnInit {
 
   private subscription!: Subscription;
+  user!: userInterface;
+
 
 
   constructor(private profileService:ProfileService){}
   
-
   ngOnInit(): void {
 
-  
-    
-  }
+    this.subscription = this.profileService.getUserDetails().subscribe((res)=>{
+          
+     if(res.user){
+       this.user = res.user
+     }
+     
+     })
+     
+     
+   }
+   ngOnDestroy(): void {
+ 
+     if(this.subscription){
+ 
+       this.subscription.unsubscribe()
+     }
+    }
+ 
 
   editProfile(){
 
