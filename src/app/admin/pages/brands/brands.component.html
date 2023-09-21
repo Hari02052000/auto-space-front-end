@@ -1,0 +1,48 @@
+<div>
+    <h2>Add New Car Brand</h2>
+    <button mat-raised-button color="primary" (click)="openAddBrandDialog()">Add Brand</button>
+  </div>
+  
+  <div  class="flex flex-wrap m-4"  *ngIf="brands$|async as brands">
+
+    <mat-accordion class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-2"  *ngFor="let brand of brands">
+        <mat-expansion-panel (click)="findModels(brand._id)">
+          <mat-expansion-panel-header>
+            <mat-panel-title >{{brand.name}} </mat-panel-title>
+
+            <button mat-icon-button  (click)="editBrandDialog(1)">
+                <mat-icon>edit</mat-icon>
+              </button>
+      
+          </mat-expansion-panel-header>
+          <button mat-raised-button color="primary" (click)="openAddModelDialog(brand._id)">Add Model</button>
+
+          <mat-panel-description>
+            <mat-accordion>
+              <mat-expansion-panel *ngFor = "let model of brand.models">
+                <mat-expansion-panel-header >
+                  <mat-panel-title >{{model.name}}</mat-panel-title>
+
+                  <button mat-icon-button (click)="editModelDialog(1)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+    
+                </mat-expansion-panel-header>
+                <mat-panel-description *ngFor = "let option of model.options">
+                  <!-- Options for this model -->
+                  <ul >
+                    <li> {{option.name}}</li>
+                    <button mat-icon-button (click)="editOptionDialog(1)">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+    
+                  </ul>
+                </mat-panel-description>
+                <button mat-raised-button color="primary" (click)="openAddOptionDialog(model._id,brand._id)">Add Option</button>
+              </mat-expansion-panel>
+            </mat-accordion>
+          </mat-panel-description>
+        </mat-expansion-panel>
+      </mat-accordion>
+    <!--  -->    
+  </div>

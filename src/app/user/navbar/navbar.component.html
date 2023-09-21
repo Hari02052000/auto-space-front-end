@@ -1,0 +1,224 @@
+<!-- <nav class="bg-white  fixed left-0 right-0 top-0 w-full z-20  border-b border-gray-200 ">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a class="flex items-center">
+      <span class="self-center text-2xl font-bold whitespace-nowrap text-blue-600">
+        Auto
+      </span>
+      <span class="self-center text-2xl font-bold whitespace-nowrap text-red-400">
+        space
+      </span>
+    </a>
+    <div class="flex md:order-2">
+      <ng-container *ngIf="isLoged else loginbtn">
+
+        <button type="button" data-dropdown-toggle="language-dropdown-menu"
+          class="inline-flex relative items-center font-medium justify-center px-4 py-2 text-sm text-gray-900 dark:text-white rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white transition duration-300 ease-in-out">
+          <img
+            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1480&q=80"
+            alt="" class="h-9 mr-2 rounded-full" />
+          <div
+            class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900"
+            *ngIf="newmsgs > 0">
+            {{ newmsgs }}
+          </div>
+          <span class="animate-bounce">▼</span>
+          <span class="sr-only">Click to open language dropdown</span>
+        </button> -->
+
+
+
+        <!-- Dropdown -->
+        <!-- <div
+          class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700"
+          id="language-dropdown-menu">
+          <ul class="py-2 font-medium" role="none">
+            <li class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" [routerLink]="['profile']">
+              profile
+            </li>
+            <li class="block relative px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" [routerLink]="['chat-list']"
+              (click)="makeZero()">
+              chats
+              <div
+                class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900"
+                *ngIf="newmsgs>0">{{newmsgs}}</div>
+
+            </li>
+            <li class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" (click)="logout">
+              log out
+            </li>
+
+          </ul>
+        </div>
+
+
+      </ng-container>
+      <ng-template #loginbtn>
+        <button type="button"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          [routerLink]="['login']">Login</button>
+
+      </ng-template>
+      <button data-collapse-toggle="navbar-sticky" type="button"
+        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        aria-controls="navbar-sticky" aria-expanded="false">
+        <span class="sr-only">Open main menu</span>
+        <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+            d="M1 1h15M1 7h15M1 13h15" />
+        </svg>
+      </button>
+    </div>
+    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+      <ul
+        class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+        <li>
+          <a [routerLink]="['home']"
+            routerLinkActive="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Home</a>
+        </li>
+        <li>
+          <a [routerLink]="['cars']"
+            routerLinkActive="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Cars</a>
+        </li>
+
+        <li>
+          <a [routerLink]="['add-car']"
+            routerLinkActive="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Add
+            car</a>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav> -->
+
+<nav class="bg-white fixed left-0 right-0 top-0 w-full z-20 border-b border-gray-200">
+  <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <a class="flex items-center">
+      <span class="self-center text-2xl font-bold whitespace-nowrap text-blue-600">
+        Auto
+      </span>
+      <span class="self-center text-2xl font-bold whitespace-nowrap text-red-400">
+        space
+      </span>
+    </a>
+    <div class="flex md:order-2 items-center">
+      <ng-container *ngIf="isLoged else loginbtn">
+        <!-- Dropdown Button -->
+        <div class="relative inline-block text-left">
+          <button
+            type="button"
+            data-dropdown-toggle="language-dropdown-menu"
+            class="inline-flex relative items-center font-medium justify-center px-4 py-2 text-sm text-gray-900 dark:text-white rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white transition duration-300 ease-in-out"
+          >
+            <img
+              src="{{user.profile.URL}}"
+              alt=""
+              class="h-9 mr-2 rounded-full"
+            />
+            <div
+              class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900"
+              *ngIf="newmsgs > 0"
+            >
+              {{ newmsgs }}
+            </div>
+            <span class="animate-bounce">▼</span>
+            <span class="sr-only">Click to open language dropdown</span>
+          </button>
+          <!-- Dropdown Menu -->
+          <div
+            class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700"
+            id="language-dropdown-menu"
+          >
+            <ul class="py-2 font-medium" role="none">
+              <li class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" [routerLink]="['profile']">
+                Profile
+              </li>
+              <li
+                class="block relative px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                [routerLink]="['chat-list']"
+                (click)="makeZero()"
+              >
+                Chats
+                <div
+                  class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900"
+                  *ngIf="newmsgs > 0"
+                >
+                  {{ newmsgs }}
+                </div>
+              </li>
+              <li class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" (click)="logout()">
+                Log Out
+              </li>
+            </ul>
+          </div>
+        </div>
+      </ng-container>
+      <ng-template #loginbtn>
+        <button
+          type="button"
+          class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+          [routerLink]="['login']"
+        >
+          Login
+        </button>
+      </ng-template>
+      <button
+        data-collapse-toggle="navbar-sticky"
+        type="button"
+        class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+        aria-controls="navbar-sticky"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Open main menu</span>
+        <svg
+          class="w-5 h-5"
+          aria-hidden="true"
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 17 14"
+        >
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
+        </svg>
+      </button>
+    </div>
+    <div
+      class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+      id="navbar-sticky"
+    >
+      <ul
+        class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700"
+      >
+        <li>
+          <a
+            [routerLink]="['home']"
+            routerLinkActive="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+          >
+            Home
+          </a>
+        </li>
+        <li>
+          <a
+            [routerLink]="['cars']"
+            routerLinkActive="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+          >
+            Cars
+          </a>
+        </li>
+        <li>
+          <a
+            [routerLink]="['add-car']"
+            routerLinkActive="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500"
+            class="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+          >
+            Add Car
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

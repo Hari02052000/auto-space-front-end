@@ -1,0 +1,47 @@
+
+<div class="min-h-screen flex items-center justify-center bg-gray-100">
+    <div class="max-w-md bg-white w-full p-8 shadow-lg rounded-lg">
+        <h2 class="text-2xl mb-4">verify email</h2>
+        <form [formGroup]="OtpForm" (ngSubmit)="Submit()">
+
+            <div class="mb-4">
+                <label for="otp" class="block text-gray-600">Otp</label>
+                <input type="number" id="otp" formControlName="otp" class="form-input w-full mt-2"
+                    placeholder="Enter the otp">
+                    <div class="text-red-500" *ngIf="otp?.invalid && otp?.touched" >
+                        <div  *ngIf="otp?.errors?.['required']" >
+                         otp is required
+                        </div>
+
+                    </div>
+                    
+            </div>
+
+
+            <button type="submit" [disabled]="OtpForm.invalid"
+                class="bg-blue-500 text-white hover:bg-blue-600 px-4 py-2 rounded-full w-full disabled:bg-gray-300 disabled:text-gray-500 cursor-not-allowed">
+                verify
+            </button>
+
+        </form>
+        <ng-template #resendbtn>
+
+
+            <a  class=" text-blue-600 underline cursor-pointer"
+            (click)="resendOtp()"
+                >
+                Resend OTP
+            </a>
+
+
+        </ng-template>
+        
+
+        <div class="col-span-6 md:col-span-3 flex items-center">
+            <ng-container *ngIf="resendDisabled else resendbtn">
+                <span class="text-gray-600">Resend OTP in {{ resendCooldownSeconds }} seconds</span>
+            </ng-container>
+        </div>
+
+    </div>
+</div>

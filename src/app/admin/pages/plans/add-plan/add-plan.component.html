@@ -1,0 +1,35 @@
+<h2 mat-dialog-title>Add New Brand</h2>
+
+<form [formGroup]="addPlanForm">
+    
+    <mat-dialog-content> 
+        <div class="err" *ngIf="addbrandErr$">
+            <p>{{addbrandErr$|async}}</p>
+
+        </div>
+        <mat-form-field appearance="fill">
+          <mat-label>plan Name</mat-label>
+          <input matInput formControlName="name" placeholder="brand name">
+        </mat-form-field><br>
+        <mat-form-field appearance="fill">
+            <mat-label>Allowed cars</mat-label>
+            <input matInput formControlName="no_of_cars" placeholder="Allowed cars">
+          </mat-form-field><br>
+          <mat-form-field appearance="fill">
+            <mat-label>validity in monts</mat-label>
+            <input matInput formControlName="validity_in_months" placeholder="validity">
+          </mat-form-field><br>
+          <mat-form-field appearance="fill">
+            <mat-label>Amount</mat-label>
+            <input matInput formControlName="Amount" placeholder="Amount">
+          </mat-form-field>
+  
+  
+  
+      </mat-dialog-content>
+      <mat-dialog-actions>
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-raised-button color="primary" (click)="onSubmit()">Add plan</button>
+      </mat-dialog-actions>
+    
+</form>

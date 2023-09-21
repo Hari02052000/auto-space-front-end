@@ -1,0 +1,31 @@
+<!-- product-list.component.html -->
+
+<div class="container mx-auto mt-10">
+    <h1 class="text-3xl font-semibold mb-6 text-center">Product List</h1>
+    <div class="overflow-x-auto">
+      <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
+        <thead class="bg-gray-100">
+          <tr>
+            <th class="px-6 py-3 border-b border-gray-300">Image</th>
+            <th class="px-6 py-3 border-b border-gray-300">Product Name</th>
+            <th class="px-6 py-3 border-b border-gray-300">Views Count</th>
+            <th class="px-6 py-3 border-b border-gray-300">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of products">
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+              <img [src]="product.imageUrl" alt="Product Image" class="w-16 h-16">
+            </td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 text-left">{{ product.name }}</td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 text-left">{{ product.viewsCount }}</td>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full mr-2">Edit</button>
+              <button class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-full">Mark as sold</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

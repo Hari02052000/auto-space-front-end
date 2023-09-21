@@ -1,0 +1,111 @@
+<!-- <div class="min-h-screen flex items-center justify-center bg-gray-100 mt-10">
+    <div class="max-w-md bg-white w-full p-8 shadow-lg rounded-lg">
+      <h2 class="text-2xl mb-4">Register</h2>
+      <form [formGroup]="registerForm" (ngSubmit)="registerSubmit()">
+  
+        <div class="mb-4">
+            <label for="email" class="block text-gray-600">Username</label>
+            <input type="text" id="email" formControlName="username" class="form-input w-full mt-2" placeholder="Enter username">
+            <div class="text-red-500" *ngIf="username?.invalid && username?.touched">
+              <div  *ngIf="username?.errors?.['required']">username is required.</div>
+              <div *ngIf="username?.hasError('spacesOnly')"> username is empty</div> 
+            </div>
+  
+          </div>
+    
+        
+        <div class="mb-4">
+          <label for="email" class="block text-gray-600">Email</label>
+          <input type="text" id="email" formControlName="email" class="form-input w-full mt-2" placeholder="Enter your email">
+          <div class="text-red-500" *ngIf="email?.invalid && email?.touched">
+            <div  *ngIf="email?.errors?.['required']">email is required.</div>
+            <div  *ngIf="email?.errors?.['email']">Invalid email format.</div>
+          </div>
+
+        </div>
+  
+        <div class="mb-4">
+          <label for="password" class="block text-gray-600">Password</label>
+          <input type="password" id="password" formControlName="password" class="form-input w-full mt-2" placeholder="Enter your password">
+          <div class="text-red-500" *ngIf="password?.invalid && password?.touched">
+            <div *ngIf="password?.errors?.['invalidPassword']">Password must contain an upper case, lower case,number and specialCharecter </div>
+
+          </div>
+
+        </div>
+        <div class="mb-4">
+            <label for="password" class="block text-gray-600">conform Password</label>
+            <input type="password" id="password" formControlName="confpassword" class="form-input w-full mt-2" placeholder="Enter your password again">
+            <div class="text-red-500" *ngIf="confpassword?.invalid && confpassword?.touched">
+              <div *ngIf="confpassword?.errors?.['required']">conform password is required.</div>
+              <div *ngIf="confpassword?.errors?.['passwordMismatch']">Passwords are not equal</div>
+
+            </div>
+  
+          </div>
+    
+  
+        <button type="submit" [disabled]="registerForm.invalid" class="bg-blue-500 text-white hover:bg-blue-600 px-4 py-2 rounded-full w-full">
+          register
+        </button>
+        <p class="text-center mt-4">
+            <a [routerLink]="['/login']" class="text-blue-500 hover:underline">alredy registerd? click here to login</a>
+          </p>
+
+      </form>
+
+    </div>
+</div>
+   -->
+
+   <div class="min-h-screen flex items-center justify-center bg-gray-100 mt-10">
+    <div class="max-w-md bg-white w-full p-8 shadow-lg rounded-lg">
+      <h2 class="text-2xl mb-4">Register</h2>
+      <form [formGroup]="registerForm" (ngSubmit)="registerSubmit()">
+  
+        <div class="mb-4">
+          <label for="username" class="block text-gray-600">Username</label>
+          <input type="text" id="username" formControlName="username" class="form-input w-full mt-2" placeholder="Enter username">
+          <div class="text-red-500" *ngIf="username?.invalid && username?.touched">
+            <div *ngIf="username?.errors?.['required']">Username is required.</div>
+            <div *ngIf="username?.hasError('spacesOnly')">Username is empty</div>
+          </div>
+        </div>
+  
+        <div class="mb-4">
+          <label for="email" class="block text-gray-600">Email</label>
+          <input type="text" id="email" formControlName="email" class="form-input w-full mt-2" placeholder="Enter your email">
+          <div class="text-red-500" *ngIf="email?.invalid && email?.touched">
+            <div *ngIf="email?.errors?.['required']">Email is required.</div>
+            <div *ngIf="email?.errors?.['email']">Invalid email format.</div>
+          </div>
+        </div>
+  
+        <div class="mb-4">
+          <label for="password" class="block text-gray-600">Password</label>
+          <input type="password" id="password" formControlName="password" class="form-input w-full mt-2" placeholder="Enter your password">
+          <div class="text-red-500" *ngIf="password?.invalid && password?.touched">
+            <div *ngIf="password?.errors?.['invalidPassword']">Password must contain an upper case, lower case, number, and special character.</div>
+          </div>
+        </div>
+  
+        <div class="mb-4">
+          <label for="confpassword" class="block text-gray-600">Confirm Password</label>
+          <input type="password" id="confpassword" formControlName="confpassword" class="form-input w-full mt-2" placeholder="Enter your password again">
+          <div class="text-red-500" *ngIf="confpassword?.invalid && confpassword?.touched">
+            <div *ngIf="confpassword?.errors?.['required']">Confirm password is required.</div>
+            <div *ngIf="confpassword?.errors?.['passwordMismatch']">Passwords do not match.</div>
+          </div>
+        </div>
+  
+        <button type="submit" [disabled]="registerForm.invalid" class="bg-blue-500 text-white hover:bg-blue-600 px-4 py-2 rounded-full w-full disabled:bg-gray-300 disabled:text-gray-500 cursor-not-allowed">
+          Register
+        </button>
+  
+        <p class="text-center mt-4">
+          <a [routerLink]="['/login']" class="text-blue-500 hover:underline">Already registered? Click here to login</a>
+        </p>
+      </form>
+    </div>
+  </div>
+  

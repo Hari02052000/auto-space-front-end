@@ -1,0 +1,38 @@
+
+<ng-container *ngIf="product">
+
+  <div class="w-[500px] object-contain mt-5" *ngIf="product">
+    <img src="{{ product.images[currentImageIndex].URL }}" alt="" class="rounded-lg shadow-lg">
+  </div>
+
+  <div class="mt-5">
+    <ul class="flex mt-5 gap-1">
+        <li *ngFor="let x of product?.images let i = index" >
+            <img src="{{ x.URL }}" class="w-16 h-16 rounded-full cursor-pointer transform hover:scale-110 transition-transform" [class.active]="i === currentImageIndex" (click)="changeimage(i)">
+        </li>
+    </ul>
+  </div>
+
+  
+  <section class="sec-product-detail bg-gray-100 p-5 md:p-10 lg:p-16 productDetail">
+    <div class="container mt-5">
+        <!-- details -->
+        <div class="md:w-1/2 lg:w-1/2 p-5 md:p-8 lg:p-10 bg-white rounded-lg shadow-lg">
+            <h2 class="text-xl md:text-2xl lg:text-3xl font-semibold text-gray-800">{{ product.brand.name }} {{ product.model.name }}</h2>
+            <p class="text-sm md:text-base text-gray-600">Option: {{ product.option.name }}</p>
+            <h3 class="text-lg md:text-xl lg:text-2xl font-semibold mt-5 text-gray-800">Product Details</h3>
+            <ul class="list-disc list-inside text-sm md:text-base text-gray-600 mt-3">
+                <li>Number of Owners: {{ product.no_of_owners }}</li>
+                <li>Year: {{ product.year }}</li>
+                <li>Kilometers Driven: {{ product.kmDriven }}</li>
+                <li>Price Rs: {{ product.price }}</li>
+                <li>Location: {{ product.Location }}</li>
+            </ul>
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-5" (click)="chat(product.user, product._id)">Chat with Owner</button>
+        </div>
+    </div>
+  </section>
+  
+
+</ng-container>
+

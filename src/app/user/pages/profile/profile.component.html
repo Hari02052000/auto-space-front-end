@@ -1,0 +1,62 @@
+<div class="container mx-auto p-6 mt-20">
+    <div class="bg-white rounded-lg shadow-lg p-4">
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+        <!-- User Profile Card -->
+        <div class="md:col-span-1">
+          <div class="bg-gray-200 p-4 rounded-lg shadow-md text-center">
+            <img
+              src="https://w7.pngwing.com/pngs/722/101/png-transparent-computer-icons-user-profile-circle-abstract-miscellaneous-rim-account.png"
+              alt="User Avatar"
+              class="rounded-full mx-auto h-32 w-32 mb-4"
+            />
+            <h4 class="text-xl font-semibold"> user.username </h4>
+            <p class="text-gray-600"> user.jobTitle </p>
+            <button
+              class="mt-4 bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300"
+              (click)="uploadImage()"
+            >
+              Edit Profile Picture
+            </button>
+          </div>
+          <div class="mt-4 bg-gray-200 p-4 rounded-lg shadow-md">
+            <ul>
+              <li class="mb-2">
+                <a [routerLink]="['/chat-list']" class="text-blue-500 hover:underline">Chats</a>
+              </li>
+              <li>
+                <p  class="text-blue-500 hover:underline">Products</p>
+              </li>
+            </ul>
+          </div>
+        </div>
+  
+        <div class="md:col-span-3">
+          <div class="bg-gray-200 p-4 rounded-lg shadow-md">
+            <div class="grid grid-cols-2 gap-4">
+              <div class="col-span-2 md:col-span-1">
+                <h6 class="text-lg font-semibold">Name</h6>
+                <p> user.fullName </p>
+              </div>
+              <div class="col-span-2 md:col-span-1">
+                <h6 class="text-lg font-semibold">Email</h6>
+                <p> user.email</p>
+              </div>
+            <div class="mt-4">
+              <a
+                class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 mr-4"
+                (click)="editProfile()"
+              >
+                Edit Profile
+              </a>
+              <a
+                class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-primary-dark focus:outline-none focus:ring focus:ring-primary-dark"
+              >
+                Change Password
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
