@@ -23,7 +23,7 @@
                 <a [routerLink]="['/chat-list']" class="text-blue-500 hover:underline">Chats</a>
               </li>
               <li>
-                <p  class="text-blue-500 hover:underline">Products</p>
+                <a [routerLink]="['/product-list']" class="text-blue-500 hover:underline">Products</a>
               </li>
             </ul>
           </div>
@@ -34,18 +34,20 @@
             <div class="grid grid-cols-2 gap-4">
               <div class="col-span-2 md:col-span-1">
                 <h6 class="text-lg font-semibold">Name</h6>
-                <p> {{user.username}} </p>
+                <input [(ngModel)]="username" type="text">
+
               </div>
               <div class="col-span-2 md:col-span-1">
                 <h6 class="text-lg font-semibold">Email</h6>
-                <p> {{user.email}}</p>
+                <input [(ngModel)]="email" type="text">
+
               </div>
             <div class="mt-4">
               <a
                 class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 mr-4"
                 (click)="editProfile()"
               >
-                Edit Profile
+                Edit details
               </a>
               <a
                 class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-primary-dark focus:outline-none focus:ring focus:ring-primary-dark"

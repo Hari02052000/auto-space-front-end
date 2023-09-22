@@ -24,6 +24,7 @@ import { PlansListComponent } from './plans-list/plans-list.component';
 import { OtpComponent } from './otp/otp.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { isTokenGuard } from '../guards/is-token.guard';
 
 
 const routes:Routes = [
@@ -38,19 +39,23 @@ const routes:Routes = [
   },
   {
     path:'add-car',
-    component:AddCarComponent
+    component:AddCarComponent,
+    canActivate:[isTokenGuard]
   },
   {
     path:'single-product/:id',
-    component:SingleProductComponent
+    component:SingleProductComponent,
+    canActivate:[isTokenGuard]
   },
   {
     path:'chat-list',
     component:ChatListComponent,
+    canActivate:[isTokenGuard],
     children:[
       {
         path:'chat/:recevierid/:productid',
-        component:ChatComponent
+        component:ChatComponent,
+        canActivate:[isTokenGuard]
       }
 
   ]
@@ -59,15 +64,11 @@ const routes:Routes = [
 
   {
     path:'chat-owner/:recevierid/:productid',
-    component:ChatComponent
+    component:ChatComponent,
+    canActivate:[isTokenGuard]
   },
 
   
-  
-  {
-    path:'single-product',
-    component:SingleProductComponent
-  },
   {
     path:'login',
     component:LoginComponent
@@ -78,19 +79,23 @@ const routes:Routes = [
   },
   {
     path:'profile',
-    component:ProfileComponent
+    component:ProfileComponent,
+    canActivate:[isTokenGuard]
   },
   {
-    path:'product-list/:id',
-    component:ProductListComponent
+    path:'product-list',
+    component:ProductListComponent,
+    canActivate:[isTokenGuard]
   },
   {
-    path:'edit-product',
-    component:EditProductComponent
+    path:'edit-product/:id',
+    component:EditProductComponent,
+    canActivate:[isTokenGuard]
   },
   {
     path:'plans-list',
-    component:PlansListComponent
+    component:PlansListComponent,
+    canActivate:[isTokenGuard]
   },
   {
     path:'otp/:email/:isPasswordChange',

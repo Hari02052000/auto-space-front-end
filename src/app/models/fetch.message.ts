@@ -4,7 +4,7 @@ export interface SingleMessageInterface{
 
     _id:string
     productId:productInterface,
-    read:boolean,
+    status:'unread'|'delivered'|'read',
     reciverId:string,
     senderId:string,
     text:string,

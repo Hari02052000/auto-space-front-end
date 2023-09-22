@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  Router } from '@angular/router';
-import { Observable, map } from 'rxjs';
+import { Observable, finalize, map } from 'rxjs';
 import { brand, productInterface } from 'src/app/models/fetch.products.interface';
 import { FetchProductServiceService } from 'src/app/service/fetch-product-service.service';
 
@@ -17,7 +17,7 @@ export class CarsComponent implements OnInit {
   filterOption:string|undefined
   sortBy:string|undefined
   sortOption:string|undefined
-
+  isLoading:boolean = true
 
 
 constructor( private fetchProductservice:FetchProductServiceService,private router:Router ){}
@@ -26,6 +26,13 @@ constructor( private fetchProductservice:FetchProductServiceService,private rout
 
     const response$ = this.fetchProductservice.fetchProduct()
 
+    response$
+    .pipe(
+      finalize(() => {
+        this.isLoading = false;
+      })
+    )
+  
     this.brands$ = response$.pipe(map((res)=>res.brands))
 
     this.products$ = response$.pipe(map((res)=>res.products))

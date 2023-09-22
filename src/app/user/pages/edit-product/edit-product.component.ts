@@ -1,4 +1,8 @@
-import { Component,AfterViewInit,OnDestroy } from '@angular/core';
+import { Component,AfterViewInit,OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { productInterface } from 'src/app/models/fetch.products.interface';
+import { TosterService } from 'src/app/service/toster/toster.service';
+import { ProductService } from '../../service/product/product.service';
 
 declare var $: any; 
 
@@ -8,27 +12,25 @@ declare var $: any;
   templateUrl: './edit-product.component.html',
   styleUrls: ['./edit-product.component.css']
 })
-export class EditProductComponent implements AfterViewInit, OnDestroy {
+export class EditProductComponent implements OnInit {
+  product!:productInterface
+  constructor(private router:Router,private tost:TosterService, private productservice:ProductService,private activeRoute:ActivatedRoute){}
+ 
+ 
+  ngOnInit(): void {
 
-  private table: any; // Variable to hold the DataTable instance
+    const id = this.activeRoute.snapshot.params['id']
 
-  ngAfterViewInit() {
-    // Initialize the DataTable in this hook
-    this.initDataTable();
+
+    this.productservice.getEditProductDetails(id).subscribe((res)=>{
+      if(res.product){
+        this.product = res.product
+      }
+    })
+    
   }
 
-  ngOnDestroy() {
-    // Destroy the DataTable when the component is destroyed to prevent memory leaks
-    if (this.table) {
-      this.table.destroy();
-    }
-  }
 
-  private initDataTable() {
-    this.table = $('#myDataTable').DataTable({
-      // DataTable options and configuration go here
-    });
-  }
 
 
 }

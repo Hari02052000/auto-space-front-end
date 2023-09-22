@@ -1,6 +1,6 @@
 <!-- product-list.component.html -->
 
-<div class="container mx-auto mt-10">
+<!-- <div class="container mx-auto mt-10">
     <h1 class="text-3xl font-semibold mb-6 text-center">Product List</h1>
     <div class="overflow-x-auto">
       <table class="min-w-full bg-white shadow-md rounded-lg overflow-hidden">
@@ -15,17 +15,71 @@
         <tbody>
           <tr *ngFor="let product of products">
             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-              <img [src]="product.imageUrl" alt="Product Image" class="w-16 h-16">
+              <img [src]="product.images[0].URL" alt="Product Image" class="w-16 h-16">
             </td>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 text-left">{{ product.name }}</td>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 text-left">{{ product.viewsCount }}</td>
-            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
-              <button class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full mr-2">Edit</button>
+            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 text-left">{{ product.brand.name }} {{product.model.name}} {{product.option.name}}</td> -->
+            <!-- <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300 text-left">{{ product.viewsCount }}</td> -->
+            <!-- <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-300">
+              <button class="bg-blue-500 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-full mr-2" (click)="editproduct(product._id)">Edit</button>
               <button class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-full">Mark as sold</button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-  </div>
+  </div> -->
   
+
+  
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-20">
+  <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+      <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+          <tr >
+              <th scope="col" class="px-6 py-3">
+                image
+            </th>
+
+              <th scope="col" class="px-6 py-3">
+                  Product name
+              </th>
+              <th scope="col" class="px-6 py-3">
+                
+              </th>
+              <th scope="col" class="px-6 py-3">
+                
+              </th>
+
+          </tr>
+      </thead>
+      <tbody>
+          <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" *ngFor="let product of products">
+
+              <td class="px-6 py-4">
+                <img [src]="product.images[0].URL" alt="Product Image" class="h-20">
+
+              </td>
+              <td class="px-6 py-4">
+                
+                {{ product.brand.name }} {{product.model.name}} {{product.option.name}}
+
+              </td>
+               
+              <td class="px-6 py-4">
+                 
+                <a  class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                [routerLink]="['/edit-product',product._id]">Edit</a>
+
+              </td>
+
+              <td class="px-6 py-4">
+                
+                <a  class="font-medium text-red-600 dark:text-red-500 hover:underline"
+                (click)="markSold(product._id)">mark as sold</a>
+
+              </td>
+
+
+          </tr>
+      </tbody>
+  </table>
+</div>

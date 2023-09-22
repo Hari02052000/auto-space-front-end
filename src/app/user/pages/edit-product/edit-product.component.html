@@ -1,11 +1,10 @@
-<section class="mt-32">
+<!-- <section class="mt-32">
 
     <table id="myDataTable" class="display">
         <thead>
           <tr>
             <th>Name</th>
             <th>Email</th>
-            <!-- Add more table headers as needed -->
           </tr>
         </thead>
         <tbody>
@@ -29,9 +28,24 @@
     
     
     
-          <!-- Add more table rows as needed -->
         </tbody>
       </table>
       
 
-</section>
+</section> -->
+
+
+<div class="bg-gray-100 py-6 mt-20">
+  <div class="max-w-2xl mx-auto">
+    <div class="bg-white rounded-lg shadow-lg p-6">
+      <h2 class="text-2xl font-semibold mb-4">Edit Product</h2>
+      <hr class="mb-4">
+      <div class="mb-4">
+        <label for="images" class="block text-gray-600">Images</label>
+        <div id="imgarray" class="grid grid-cols-2 gap-4">
+            <div class="relative" *ngFor="let image of product.images">
+              <button class="absolute top-0 right-0 bg-red-500 text-white p-1 rounded-full" onclick="deleteImage()">x</button>
+              <img  src="{{image.URL}}" alt="Product Image" class="w-full h-auto rounded">
+            </div>
+        </div>
+

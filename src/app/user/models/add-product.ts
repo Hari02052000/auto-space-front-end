@@ -8,3 +8,8 @@ export interface singleproducttResponseInterface{
     product?:productInterface
     err?:string
 }
+
+export interface postedproducttResponseInterface{
+    products?:productInterface[]
+    err?:string
+}

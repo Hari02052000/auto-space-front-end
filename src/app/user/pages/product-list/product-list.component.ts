@@ -1,7 +1,10 @@
 
 
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { ProductService } from '../../service/product/product.service';
+import { productInterface } from 'src/app/models/fetch.products.interface';
 
 
 @Component({
@@ -9,25 +12,23 @@ import { Component } from '@angular/core';
   templateUrl: './product-list.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit {
 
-  products: any[] = [
-    {
-      id: 1,
-      name: 'Product 1',
-      imageUrl: 'path/to/image1.jpg',
-      viewsCount: 100,
-    },
-    {
-      id: 2,
-      name: 'Product 2',
-      imageUrl: 'path/to/image2.jpg',
-      viewsCount: 200,
-    },
-    // Add more products as needed
-  ];
+  products!: productInterface[];
 
+  constructor(private router:Router,private productService:ProductService){}
 
+  ngOnInit(): void {
+    this.productService.getPostedProducts().subscribe((res)=>{
 
+      if(res.products){
+        this.products = res.products
+      }
+    })
+  }
+
+  markSold(id:string){
+    
+  }
 
 }

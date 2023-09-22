@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
-import { fetchUserResponseInterface } from '../../models/user-profile';
+import { editDetailsResponseInterface, fetchUserResponseInterface, userProfileUpdateResponseInterface } from '../../models/user-profile';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,14 @@ export class ProfileService {
 
   }
 
-  editProfile(){}
-  editDetails(){}
+  uploadProfile(profileForm:FormData){
+        
+     return this.http.post<userProfileUpdateResponseInterface>(`${this.baseUrl}/user/upload-profile`,profileForm)
+
+}
+
+
+  editProfile(username:string,email:string){
+    return this.http.post<editDetailsResponseInterface>(`${this.baseUrl}/user/edit-details`,{username:username,email:email})
+  }
 }

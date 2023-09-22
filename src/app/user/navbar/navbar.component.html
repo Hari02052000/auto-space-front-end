@@ -124,16 +124,17 @@
             >
               {{ newmsgs }}
             </div>
-            <span class="animate-bounce">▼</span>
+            <span class="animate-bounce " (click)="toggleDropdown()">▼</span>
             <span class="sr-only">Click to open language dropdown</span>
           </button>
           <!-- Dropdown Menu -->
           <div
-            class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700"
-            id="language-dropdown-menu"
+            class="z-50 relative my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700"
+            id="language-dropdown-menu"   *ngIf="isDropdownOpen"
+
           >
             <ul class="py-2 font-medium" role="none">
-              <li class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" [routerLink]="['profile']">
+              <li class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" [routerLink]="['profile']" >
                 Profile
               </li>
               <li

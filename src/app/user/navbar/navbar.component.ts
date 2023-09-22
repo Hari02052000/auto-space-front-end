@@ -16,6 +16,8 @@ export class NavbarComponent implements OnInit {
   newmsgs: number = 0 // count of unread messages
   user!:userInterface
   private socket!: Socket;
+  isDropdownOpen = false;
+
 
 
   constructor(private router: Router, protected authservice: FetchProductServiceService) {
@@ -32,6 +34,11 @@ export class NavbarComponent implements OnInit {
     }
 
   }
+
+  toggleDropdown() {
+    this.isDropdownOpen = !this.isDropdownOpen;
+  }
+  
 
 
   ngOnInit(): void {

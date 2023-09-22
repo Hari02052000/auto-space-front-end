@@ -1,4 +1,4 @@
-<div class="flex flex-col h-[100%] mt-20">
+<div class="flex flex-col h-[100%] ">
   <div class="flex items-center justify-between p-4 border-b border-gray-300">
     <div class="flex items-center">
       <img src="{{recever.profile.URL}}" alt="Profile Picture" class="w-10 h-10 rounded-full mr-4">
@@ -16,10 +16,10 @@
           </div>
           {{message.text}}
           <div class="flex items-center text-xs text-gray-500 absolute bottom-0 right-0">
-            <!-- <mat-icon>done</mat-icon> -->
-            <mat-icon>done_all</mat-icon>
+            <mat-icon *ngIf="message.status=='unread'">done</mat-icon>
+            <mat-icon *ngIf="message.status=='delivered'">done_all</mat-icon>
 
-            <!-- <mat-icon class="text-blue-500">done_all</mat-icon> -->
+            <mat-icon class="text-blue-500" *ngIf="message.status=='read'">done_all</mat-icon>
 
 
 
