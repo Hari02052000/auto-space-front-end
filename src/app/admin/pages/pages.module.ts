@@ -20,7 +20,7 @@ import { EditPlanComponent } from './plans/edit-plan/edit-plan.component';
 const routes:Routes = [
   {
     path:'',
-    component:HomeComponent
+    component:BrandsComponent
   },
   {
     path:'brands',

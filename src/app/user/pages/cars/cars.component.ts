@@ -16,7 +16,6 @@ export class CarsComponent implements OnInit {
   search:string|undefined
   filterOption:string|undefined
   sortBy:string|undefined
-  sortOption:string|undefined
   isLoading:boolean = true
 
 
@@ -38,7 +37,13 @@ constructor( private fetchProductservice:FetchProductServiceService,private rout
     this.products$ = response$.pipe(map((res)=>res.products))
 
   }
-  searchfunction(){}
+  searchfunction(){
+
+    this.products$ =  this.fetchProductservice.searchProduct(this.search,this.sortBy,this.filterOption).pipe(
+      map(response => response.products)
+    )
+
+  }
 
   showDetails(id:string){
 

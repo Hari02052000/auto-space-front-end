@@ -31,3 +31,17 @@ export interface addBrandSuccessInterface{
 export interface fetchBrandResponseInterface{
     brands:addBrandSuccessInterface[]
 }
+
+export interface addModelResponseInterface{
+    brand:addBrandSuccessInterface,
+    brandId:string
+    created?:boolean
+    err?:string
+}
+
+export interface addBrandResponseInterface{
+    brand:addBrandSuccessInterface,
+    created?:boolean
+    err?:string
+}
+

@@ -27,10 +27,10 @@
         [(ngModel)]="sortBy"
         (ngModelChange)="searchfunction()"
       >
-        <option value="relevance">kmDriven:lower to higher</option>
-        <option value="date">kmDriven:higher to lower</option>
-        <option value="salary">price:lower to higher</option>
-        <option value="salary">price:higher to lower</option>
+        <option value="km asc">kmDriven:lower to higher</option>
+        <option value="km dsc">kmDriven:higher to lower</option>
+        <option value="price asc">price:lower to higher</option>
+        <option value="price dsc">price:higher to lower</option>
 
       </select>
     </div>
@@ -41,7 +41,7 @@
           <input
             type="radio"
             name="filterOption"
-            value="all"
+            value="undefined"
             autocomplete="off"
             [(ngModel)]="filterOption"
             (ngModelChange)="searchfunction()"

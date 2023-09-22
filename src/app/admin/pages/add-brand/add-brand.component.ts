@@ -2,6 +2,7 @@ import { Component,OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Observable } from 'rxjs';
+import { BrandService } from '../../service/brand/brand.service';
 
 @Component({
   selector: 'app-add-brand',
@@ -10,9 +11,10 @@ import { Observable } from 'rxjs';
 })
 export class AddBrandComponent implements OnInit {
 
+
    brandForm!: FormGroup;
    addbrandErr$!: Observable<string|undefined>;
-    constructor(public dialogRef: MatDialogRef<AddBrandComponent>,private formBuilder: FormBuilder) {
+    constructor(public dialogRef: MatDialogRef<AddBrandComponent>,private formBuilder: FormBuilder,private brandservice:BrandService) {
      this.brandForm = this.formBuilder.group({
         brandName:['',Validators.required]
       })
@@ -23,7 +25,8 @@ export class AddBrandComponent implements OnInit {
  
    onSubmit() {
      if (this.brandForm.valid) {
- 
+         
+        
      }
    }
  

@@ -26,6 +26,11 @@ export class FetchProductServiceService {
   fetchBrand(){
     return this.http.get<FetchBrandResponseInterface>(`${this.baseUrl}/user/products/get-brands`)
   }
+
+  searchProduct(search?:string,sortBy?:string,filter?:string){
+    return this.http.get<productResponseInterface>(`${this.baseUrl}/user/products/search-products?search=${search}&sortBy=${sortBy}&filter=${filter}`)
+  }
+
   haveToken(){
     return !! localStorage.getItem('userToken')
 
