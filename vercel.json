@@ -1,0 +1,5 @@
+{
+    "build": {
+      "maxSize": "4mb" 
+    }
+  }
