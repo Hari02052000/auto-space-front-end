@@ -34,7 +34,7 @@ export interface productInterface{
     no_of_owners:number,
     images:images[]
     isSold:boolean,
-    isBlocked:boolean
+    isListed:boolean
 
 }
 

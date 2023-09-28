@@ -8,5 +8,11 @@ export interface FetchPlanResponseInterface{
 export interface subscriptionResponseInterface{
     subscribed?:boolean,
     payed?:boolean,
-    err?:string
+    err?:string,
+    order?:any,
+    isOnline?:boolean
+}
+
+export interface veriPaymentResponseInterface{
+    isPayed:boolean
 }

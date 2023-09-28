@@ -12,6 +12,19 @@ export interface SingleMessageInterface{
 
 }
 
+export interface alertMessageInterface{
+
+    _id:string
+    productId:productInterface,
+    status:'unread'|'delivered'|'read',
+    reciverId:string,
+    senderId:userInterface,
+    text:string,
+    timestamps:string
+
+}
+
+
 export interface UserMessagesResponseInterface{
 
     messages:SingleMessageInterface[],
@@ -30,6 +43,7 @@ export interface userInterface{
     _id:string,
     email:string,
     username:string,
+    isBlocked:boolean,
     profile:userprofile
 }
 

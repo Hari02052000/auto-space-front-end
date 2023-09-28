@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
-import { FetchPlanResponseInterface, subscriptionResponseInterface } from '../../models/fetch-plan-response';
+import { FetchPlanResponseInterface, subscriptionResponseInterface, veriPaymentResponseInterface } from '../../models/fetch-plan-response';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +20,14 @@ export class SubscriptionService {
   subscribePlan(id: string) {
 
   return  this.http.post<subscriptionResponseInterface>(`${this.baseUrl}/user/subscription/create-payment`, { planId: id })
+}
+verifyOnline(res:any,order:any){
+
+  return  this.http.post<veriPaymentResponseInterface>(`${this.baseUrl}/user/subscription/verify-payment`, { response:res,order:order })
+}
+
+
+
 }
 
 
@@ -64,5 +72,5 @@ export class SubscriptionService {
 
 
 
-}
+
 

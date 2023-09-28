@@ -2,8 +2,10 @@ import { Component, OnInit, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 import { Socket, io } from 'socket.io-client';
 import { FetchProductServiceService } from 'src/app/service/fetch-product-service.service';
-import { SingleMessageInterface, userInterface } from 'src/app/models/fetch.message';
+import { SingleMessageInterface, alertMessageInterface, userInterface } from 'src/app/models/fetch.message';
 import { userData } from 'src/app/models/user.interfaces';
+import { environment } from 'src/environments/environment.development';
+import { TosterService } from 'src/app/service/toster/toster.service';
 
 
 @Component({
@@ -20,7 +22,7 @@ export class NavbarComponent implements OnInit {
 
 
 
-  constructor(private router: Router, protected authservice: FetchProductServiceService) {
+  constructor(private router: Router, protected authservice: FetchProductServiceService,private Toster:TosterService) {
 
   }
 
@@ -51,7 +53,7 @@ export class NavbarComponent implements OnInit {
   }
 
   private connectSocket(token: string): void {
-    this.socket = io('http://localhost:3000/user-alert', {
+    this.socket = io(`${environment.baseUrl}/user-alert`, {
       transports: ['websocket', 'polling'],
       auth: {
         token: token
@@ -66,9 +68,10 @@ export class NavbarComponent implements OnInit {
 
     })
 
-    this.socket.on('newMessage', (newMessage: SingleMessageInterface) => {
+    this.socket.on('newMessage', (newMessage: alertMessageInterface) => {
+      this.Toster.showCustomToast('info',`${newMessage.senderId.username}:${newMessage.text}`)
       this.newmsgs++
-      alert(newMessage.text);
+
     });
 
     this.socket.on('noUser', () => {

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {  Router } from '@angular/router';
-import { Observable, finalize, map } from 'rxjs';
+import { Observable, finalize, map, tap } from 'rxjs';
 import { brand, productInterface } from 'src/app/models/fetch.products.interface';
 import { FetchProductServiceService } from 'src/app/service/fetch-product-service.service';
 
@@ -16,30 +16,37 @@ export class CarsComponent implements OnInit {
   search:string|undefined
   filterOption:string|undefined
   sortBy:string|undefined
-  isLoading:boolean = true
+  isLoading!: boolean;
 
 
 constructor( private fetchProductservice:FetchProductServiceService,private router:Router ){}
 
   ngOnInit(): void {
 
+    this.isLoading = true
+   
     const response$ = this.fetchProductservice.fetchProduct()
 
-    response$
-    .pipe(
-      finalize(() => {
-        this.isLoading = false;
-      })
-    )
   
     this.brands$ = response$.pipe(map((res)=>res.brands))
 
     this.products$ = response$.pipe(map((res)=>res.products))
+    response$.subscribe(
+      (data) => {
+        this.isLoading = false
+      }
+    )    
+
 
   }
   searchfunction(){
 
+    this.isLoading = true
+
     this.products$ =  this.fetchProductservice.searchProduct(this.search,this.sortBy,this.filterOption).pipe(
+      tap(()=>{
+        this.isLoading = false
+      }),
       map(response => response.products)
     )
 

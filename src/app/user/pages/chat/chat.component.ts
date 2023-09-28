@@ -5,6 +5,7 @@ import { Socket, io } from 'socket.io-client';
 import { AuthService } from '../../service/auth/auth.service';
 import { SingleMessageInterface, userInterface } from 'src/app/models/fetch.message';
 import { productInterface } from 'src/app/models/fetch.products.interface';
+import { environment } from 'src/environments/environment.development';
 
 @Component({
   selector: 'app-chat',
@@ -56,7 +57,7 @@ export class ChatComponent {
 
       
    
-     this.socket = io('http://localhost:3000/user-chat',{
+     this.socket = io(`${environment.baseUrl}/user-chat`,{
    
    transports: ['websocket', 'polling'],
 

@@ -1,6 +1,6 @@
-<div class="flex h-auto bg-gray-100 mt-20">
-  <div class="w-1/3 border-r border-gray-300 p-4 overflow-y-auto">
-    <h2 class="text-lg font-semibold mb-4">Chat Threads</h2>
+<!-- <div class="flex  bg-gray-100 mt-20">
+  <div class="  border-r border-gray-300 p-4 overflow-y-auto">
+    <h2 class="text-lg font-semibold mb-4">Chats</h2>
     <ul *ngFor="let chat of chats">
       <li *ngFor = "let singleChat of chat.chats ">
         <a [routerLink]="['/chat-list/chat', chat._id.senderId, chat._id.productId]"
@@ -11,9 +11,9 @@
             <div class="text-blue-600 font-semibold">{{ singleChat.sender.username }}</div>
             <div class="text-gray-500 text-sm">{{singleChat.latestMessage}}</div>
           </div>
-          <!-- <div class="ml-auto">
+          <div class="ml-auto">
             <div class="text-sm font-semibold">3</div>
-          </div> -->
+          </div>
         </a>
       </li>
     </ul>
@@ -22,7 +22,7 @@
   <div class="w-2/3 p-4">
     <router-outlet></router-outlet>
   </div>
-</div>
+</div> -->
 
 <!-- <div class="w-1/3 border-r border-gray-300 p-4 max-h-[75vh] overflow-y-auto">
   <h2 class="text-lg font-semibold mb-4">Chat Threads</h2>
@@ -41,4 +41,41 @@
   </ul>
 </div> -->
 
+<div class="bg-gray-100 h-[71vh] overflow-hidden m-0 grid" style="grid-template-columns:1fr 3fr ; ">
 
+  <div class="border border-r border-black ">
+    <div class="h-[16%] w-[100%] bg-blue-400 text-center pt-5">
+      <h1>chats</h1>
+    </div>
+    <div class="h-[70%] overflow-y-scroll">
+
+      <ul *ngFor="let chat of chats">
+        <li *ngFor="let singleChat of chat.chats ">
+          <a [routerLink]="['/chat-list/chat', chat._id.senderId, chat._id.productId]"
+            class="flex items-center py-2 px-2 hover:bg-gray-200 cursor-pointer" (click)="setcount(chat._id.productId,chat._id.senderId)">
+            <img src="{{singleChat.sender.profile.URL}}" alt="Profile Picture" class="w-10 h-10 rounded-full mr-2">
+            <div>
+              <div class="text-blue-600 font-semibold">{{ singleChat.sender.username }}</div>
+              <div class="text-gray-500 text-sm">{{singleChat.latestMessage}}</div>
+            </div>
+            <div class="ml-auto" *ngIf="chat.unreadCount>0">
+              <div class="text-sm font-semibold">{{chat.unreadCount}}</div>
+            </div>
+          </a>
+        </li>
+      </ul>
+
+
+
+
+    </div>
+
+
+  </div>
+  <div>
+
+    <router-outlet></router-outlet>
+
+
+  </div>
+</div>

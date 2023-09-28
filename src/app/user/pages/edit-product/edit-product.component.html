@@ -35,17 +35,39 @@
 </section> -->
 
 
-<div class="bg-gray-100 py-6 mt-20">
+<div class="bg-gray-100 py-6 ">
   <div class="max-w-2xl mx-auto">
     <div class="bg-white rounded-lg shadow-lg p-6">
-      <h2 class="text-2xl font-semibold mb-4">Edit Product</h2>
+      <h2 class="text-2xl font-semibold mb-4">Edit {{product.brand.name}} {{product.model.name}} {{product.option.name}}</h2>
       <hr class="mb-4">
       <div class="mb-4">
         <label for="images" class="block text-gray-600">Images</label>
-        <div id="imgarray" class="grid grid-cols-2 gap-4">
-            <div class="relative" *ngFor="let image of product.images">
-              <button class="absolute top-0 right-0 bg-red-500 text-white p-1 rounded-full" onclick="deleteImage()">x</button>
+        <div  class="grid grid-cols-2 gap-4">
+            <div class="relative" *ngFor="let image of product.images; let i = index">
+              <button class="absolute top-0 right-0 bg-red-500 text-white p-1 rounded-full" (click)="deleteimage(i)">x</button>
               <img  src="{{image.URL}}" alt="Product Image" class="w-full h-auto rounded">
             </div>
-        </div>
+        </div><br>
+        <button class="bg-blue-500 text-white hover:bg-blue-600 px-4 py-2 rounded-full w-full" (click)="uploadImages()">
+          upload new images
+        </button><br>
+        <label for="price">price</label><br>
+        <input type="text" id="price"><br>
+        <label for="price">year</label><br>
+        <input type="number" id="price"><br>
+        <label for="fuel">fuel</label><br>
+        <input type="text" id="fuel"><br>
+        <label for="kmDriven">kmDriven</label><br>
+        <input type="number" id="price"><br>
+        <label for="location">Locaction</label><br>
+        <input type="text" id="location"><br>
+        <label for="no_of_owners">no_of_owners</label><br>
+        <input type="number" id="no_of_owners"><br>
+        <button>update</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 

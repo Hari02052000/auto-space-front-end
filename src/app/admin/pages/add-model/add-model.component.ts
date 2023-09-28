@@ -1,4 +1,14 @@
-import { Component,OnInit } from '@angular/core';
+import { Component,Inject,OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { BrandService } from '../../service/brand/brand.service';
+import { TosterService } from 'src/app/service/toster/toster.service';
+import { raceWith } from 'rxjs';
+
+interface brandId{
+  id:string
+}
+
 
 @Component({
   selector: 'app-add-model',
@@ -7,33 +17,40 @@ import { Component,OnInit } from '@angular/core';
 })
 export class AddModelComponent implements OnInit {
 
-  //modelForm:FormGroup
+  modelForm!: FormGroup;
       
- // addModelErr$!: Observable<string|undefined>;
+ addModelErr!: string|undefined;
  
 
-  // constructor(public dialogRef: MatDialogRef<AddModelComponent>,private formBuilder: FormBuilder,private store:Store,
-  //    @Inject(MAT_DIALOG_DATA) private data:brandId
-  //   ) {
-      
-    
-  //   this.modelForm = this.formBuilder.group({
-  //     modelName:['',Validators.required]
-  //   })
-  // }
+  constructor(public dialogRef: MatDialogRef<AddModelComponent>,private formBuilder: FormBuilder,private brandservice:BrandService,private toster:TosterService,
+     @Inject(MAT_DIALOG_DATA) private data:brandId
+    ) {  }
 
    ngOnInit(): void {
-   // this.addModelErr$ = this.store.pipe(select(addModelErrorSelector))
+
+    this.modelForm = this.formBuilder.group({
+      modelName:['',Validators.required]
+    })
+
 
    }
   
 
   onSubmit() {
-    // if (this.modelForm.valid) {
-    //   console.log(this.modelForm.value.modelName)
-    //   this.store.dispatch(adminModelAddingActions.ModelFormSubmit({modelname:this.modelForm.value.modelName,brandId:this.data.id}))
-    // }
-  }
+    if (this.modelForm.valid) {
+      console.log(this.modelForm.value.modelName,this.data.id)
+      this.brandservice.addModel(this.modelForm.value.modelName,this.data.id).subscribe((res)=>{
+        if(res.err){
+          this.toster.showCustomToast('error',res.err)
+        }
+        if(res.created && res.model){
+          this.toster.showCustomToast('success','model added')
+          this.dialogRef.close({model:res.model})
+        }
+      })
+
+    }
 
 
+}
 }

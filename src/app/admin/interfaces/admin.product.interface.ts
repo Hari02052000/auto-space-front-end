@@ -1,3 +1,5 @@
+import { productFetchInterface, productInterface } from "src/app/models/fetch.products.interface"
+
 export interface addBrandResponseInterface{
     brand:addBrandSuccessInterface,
     created?:boolean
@@ -5,7 +7,7 @@ export interface addBrandResponseInterface{
 }
 
 export interface addModelResponseInterface{
-    brand:addBrandSuccessInterface,
+    model:modelInterface,
     brandId:string
     created?:boolean
     err?:string
@@ -33,7 +35,7 @@ export interface fetchBrandResponseInterface{
 }
 
 export interface addModelResponseInterface{
-    brand:addBrandSuccessInterface,
+    model:modelInterface,
     brandId:string
     created?:boolean
     err?:string
@@ -44,4 +46,21 @@ export interface addBrandResponseInterface{
     created?:boolean
     err?:string
 }
+
+export interface editBrandResponseInterface{
+    edited?:boolean
+    err?:string
+}
+
+export interface productListUnlistResponseInterface{
+    unlisted?:boolean,
+    listed?:boolean,
+    id?:string
+}
+
+export interface adminFetchProductResponseInterface{
+    products?:productInterface[],
+    err?:string
+}
+
 

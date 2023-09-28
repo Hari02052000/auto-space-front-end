@@ -24,7 +24,7 @@ export class BrandsComponent {
 
   }
    
-    brands$!: Observable<addBrandSuccessInterface[]|undefined>;
+    brands: addBrandSuccessInterface[]|undefined;
    addBrandDialogRef!: MatDialogRef<AddBrandComponent>;
    addModelDialogRef!: MatDialogRef<AddModelComponent>;
    editModelDialogRef!: MatDialogRef<EditModelComponent>;
@@ -41,8 +41,11 @@ export class BrandsComponent {
   
   ngOnInit(): void {
     
-  const response$ =  this.brandService.getbrands()
-  this.brands$ = response$.pipe(map((res)=>res.brands))
+    this.brandService.getbrands().subscribe((res)=>{
+    if(res.brands){
+      this.brands = res.brands
+    }
+  })
      //this.brands$ = this.store.pipe(select(allBrandSelector))
   
     //   this.store.pipe(select(addBrandSelector),takeUntil(this.ngUnsubscribe)).subscribe((added)=>{
@@ -97,12 +100,36 @@ export class BrandsComponent {
     openAddBrandDialog(){
   
       this.addBrandDialogRef = this.dialog.open(AddBrandComponent);
-  
+
+    
+      this.addBrandDialogRef.afterClosed().subscribe((res)=>{
+
+        if(res.brand){
+        this.brands?.push(res.brand)
+        }
+      })
   
     }
+    
     openAddModelDialog(id:string){
          
       this.addModelDialogRef = this.dialog.open(AddModelComponent,{data:{id:id}})
+
+      this.addModelDialogRef.afterClosed().subscribe((res)=>{
+        if(res.model){
+           
+          console.log(res.model)
+         const updatedbrands = this.brands?.find((brand)=>{
+          return brand._id === id
+         })
+
+         updatedbrands?.models.push(res.model)
+        
+        }
+      })
+
+
+      
   
     }
   
@@ -110,13 +137,25 @@ export class BrandsComponent {
       this.addOptionDialogRef = this.dialog.open(AddOptionComponent,{data:{modelId:modelId,brandId:brandId}})
     }
   
-    editOptionDialog(id:number){
+    editOptionDialog(id:string){
       this.editOptionDialogRef = this.dialog.open(EditOptionComponent)
     }
-    editBrandDialog(id:number){
-      this.editBrandDialogRef = this.dialog.open(EditBrandComponent)
+    editBrandDialog(brandname:string,id:string){
+      this.editBrandDialogRef = this.dialog.open(EditBrandComponent,{data:{brandId:id,brandName:brandname}})
+
+      this.editBrandDialogRef.afterClosed().subscribe((res)=>{
+        if(res.brandname){
+
+          const brandToUpdate = this.brands?.find(brand => brand._id === id);
+          if(brandToUpdate)
+          brandToUpdate.name = res.brandname
+  
+
+        }
+
+      })
     }
-    editModelDialog(id:number){
+    editModelDialog(id:string){
       this.editModelDialogRef = this.dialog.open(EditModelComponent)
     }
   

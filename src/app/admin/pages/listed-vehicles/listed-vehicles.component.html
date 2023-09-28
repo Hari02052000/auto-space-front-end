@@ -1,1 +1,107 @@
-<p>listed-vehicles works!</p>
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-20">
+    <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr >
+                <th scope="col" class="px-6 py-3">
+                  image
+              </th>
+  
+                <th scope="col" class="px-6 py-3">
+                    Product name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  price
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  is sold
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  is Listed
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  
+                </th>
+
+
+  
+            </tr>
+        </thead>
+        <tbody>
+            <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" *ngFor="let product of products">
+  
+                <td class="px-6 py-4">
+                  <img [src]="product.images[0].URL" alt="Product Image" class="h-20">
+  
+                </td>
+                <td class="px-6 py-4">
+                  
+                  {{ product.brand.name }} {{product.model.name}} {{product.option.name}}
+  
+                </td>
+                <td class="px-6 py-4">
+                  
+                  {{ product.price }}
+  
+                </td>
+                <td class="px-6 py-4">
+                  
+                  {{ product.isSold }}
+  
+                </td>
+
+                <td class="px-6 py-4">
+                  
+                  {{ product.isListed }}
+  
+                </td>
+
+
+
+                 
+                <td class="px-6 py-4">
+                   
+                  <a  class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                  >
+                  
+                  <mat-icon>visibility</mat-icon>
+
+                
+
+                </a>
+  
+                </td>
+
+                <td class="px-6 py-4" *ngIf="!product.isListed && !product.isSold ">
+                   
+                  <a  class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                  >List vechicle</a>
+  
+                </td>
+  
+                <td class="px-6 py-4" *ngIf="product.isListed && !product.isSold ">
+                  
+                  <a  class="font-medium text-red-600 dark:text-red-500 hover:underline"
+                  >unlist product</a>
+  
+                </td>
+
+                <td class="px-6 py-4" *ngIf="product.isSold">
+                  
+                  <a  class="font-medium text-stone-600"
+                  >sold out</a>
+  
+                </td>
+
+  
+
+  
+  
+  
+            </tr>
+        </tbody>
+    </table>
+  </div>
+  

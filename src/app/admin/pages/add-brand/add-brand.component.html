@@ -3,18 +3,22 @@
 <form [formGroup]="brandForm">
     
     <mat-dialog-content> 
-        <div class="err" *ngIf="addbrandErr$">
-            <p>{{addbrandErr$|async}}</p>
+        <div class="text-red-700" *ngIf="addbrandErr">
+            <p>{{addbrandErr}}</p>
 
         </div>
         <mat-form-field appearance="fill">
           <mat-label>Brand Name</mat-label>
           <input matInput formControlName="brandName" placeholder="brand name">
+          <mat-error *ngIf="brandName?.invalid && brandName?.touched" >
+          <div  *ngIf="brandName?.errors?.['required']"> Brand Name is required </div>  
+          </mat-error>
+
         </mat-form-field>
       </mat-dialog-content>
       <mat-dialog-actions>
         <button mat-button mat-dialog-close>Cancel</button>
-        <button mat-raised-button color="primary" (click)="onSubmit()">Add Brand</button>
+        <button [disabled]="brandForm.invalid" mat-raised-button color="primary" (click)="onSubmit()">Add Brand</button>
       </mat-dialog-actions>
     
 </form>

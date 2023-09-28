@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ElementRef,Renderer2 } from '@angular/core';
 import { AuthService } from '../../service/auth/auth.service';
 import { newinteface } from 'src/app/models/fetch.chat.interface';
 
@@ -11,9 +11,11 @@ export class ChatListComponent {
 
   chats:newinteface[] = []
 
-  constructor(private chatservice:AuthService){}
+  constructor(private chatservice:AuthService,private el: ElementRef, private renderer: Renderer2){}
 
  ngOnInit(): void {
+
+
    this.chatservice.getAllChats().subscribe(
     res=>{
       this.chats = res.chats
@@ -24,7 +26,19 @@ export class ChatListComponent {
     }
    )
  }
+ setcount(productid:string,senderid:string){
+  console.log('product')
+  console.log(this.chats)
+  console.log(productid,senderid)
+  const chatToUpdate = this.chats.find((chat) => {
+    return chat._id.productId === productid && chat._id.senderId === senderid;
+  });
+  
+  console.log(chatToUpdate)
+if(chatToUpdate)
+  chatToUpdate.unreadCount = 0
 
+ }
 
   
 

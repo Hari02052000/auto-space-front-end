@@ -1,12 +1,12 @@
 
 <ng-container *ngIf="product">
 
-  <div class="w-[500px] object-contain mt-5" *ngIf="product">
+  <div class="w-[500px] object-contain mt-5 mx-auto" *ngIf="product">
     <img src="{{ product.images[currentImageIndex].URL }}" alt="" class="rounded-lg shadow-lg">
   </div>
 
-  <div class="mt-5">
-    <ul class="flex mt-5 gap-1">
+  <div class="mt-5 ">
+    <ul class="flex mt-5 gap-1 justify-center ">
         <li *ngFor="let x of product?.images let i = index" >
             <img src="{{ x.URL }}" class="w-16 h-16 rounded-full cursor-pointer transform hover:scale-110 transition-transform" [class.active]="i === currentImageIndex" (click)="changeimage(i)">
         </li>
@@ -14,7 +14,7 @@
   </div>
 
   
-  <section class="sec-product-detail bg-gray-100 p-5 md:p-10 lg:p-16 productDetail">
+  <section class="sec-product-detail bg-gray-100 mx-auto p-5 md:p-10 lg:p-16 productDetail">
     <div class="container mt-5">
         <!-- details -->
         <div class="md:w-1/2 lg:w-1/2 p-5 md:p-8 lg:p-10 bg-white rounded-lg shadow-lg">

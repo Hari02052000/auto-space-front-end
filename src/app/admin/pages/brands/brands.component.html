@@ -3,14 +3,14 @@
     <button mat-raised-button color="primary" (click)="openAddBrandDialog()">Add Brand</button>
   </div>
   
-  <div  class="flex flex-wrap m-4"  *ngIf="brands$|async as brands">
+  <div  class="flex flex-wrap m-4"  *ngIf="brands">
 
     <mat-accordion class="w-full md:w-1/2 lg:w-1/3 xl:w-1/4 p-2"  *ngFor="let brand of brands">
         <mat-expansion-panel (click)="findModels(brand._id)">
           <mat-expansion-panel-header>
             <mat-panel-title >{{brand.name}} </mat-panel-title>
 
-            <button mat-icon-button  (click)="editBrandDialog(1)">
+            <button mat-icon-button  (click)="editBrandDialog(brand.name,brand._id)">
                 <mat-icon>edit</mat-icon>
               </button>
       
@@ -23,16 +23,15 @@
                 <mat-expansion-panel-header >
                   <mat-panel-title >{{model.name}}</mat-panel-title>
 
-                  <button mat-icon-button (click)="editModelDialog(1)">
+                  <button mat-icon-button (click)="editModelDialog('')">
                     <mat-icon>edit</mat-icon>
                   </button>
     
                 </mat-expansion-panel-header>
                 <mat-panel-description *ngFor = "let option of model.options">
-                  <!-- Options for this model -->
                   <ul >
                     <li> {{option.name}}</li>
-                    <button mat-icon-button (click)="editOptionDialog(1)">
+                    <button mat-icon-button (click)="editOptionDialog('')">
                         <mat-icon>edit</mat-icon>
                       </button>
     
@@ -44,5 +43,4 @@
           </mat-panel-description>
         </mat-expansion-panel>
       </mat-accordion>
-    <!--  -->    
   </div>

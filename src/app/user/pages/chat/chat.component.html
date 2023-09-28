@@ -1,4 +1,4 @@
-<div class="flex flex-col h-[100%] ">
+<!-- <div class="flex flex-col  mt-20 bg-gray-100 ">
   <div class="flex items-center justify-between p-4 border-b border-gray-300">
     <div class="flex items-center">
       <img src="{{recever.profile.URL}}" alt="Profile Picture" class="w-10 h-10 rounded-full mr-4">
@@ -7,7 +7,7 @@
         product.model.name}} </div>
     </div>
   </div>
-  <div class="flex-1 p-4 overflow-y-auto">
+  <div class="flex-1 p-4 overflow-y-auto relative min-h-[100%]">
     <div *ngFor="let message of messages" class="flex justify-end mb-4">
       <div class="flex justify-start mb-4 relative" *ngIf="message.senderId === logedUser else reciverMsg">
         <div class="p-2 rounded bg-gray-200 relative">
@@ -45,12 +45,84 @@
       </ng-template>
     </div>
 
+    <div class="flex items-center p-4 border-t border-gray-300 absolute bottom-0 right-0 left-0 flex-shrink-0">
+      <input [(ngModel)]="newMessage" class="flex-1 p-2 border rounded border-gray-300 mr-2"
+        placeholder="Type your message...">
+      <button (click)="sendMessage()"
+        class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300">Send</button>
+    </div>
+  
+
   </div>
-  <div class="flex items-center p-4 border-t border-gray-300  flex-shrink-0">
+
+</div> -->
+
+<div class="h-[71vh] overflow-hidden relative ">
+  <div class="h-[16%] w-[100%]  ">
+
+    <div class="flex items-center justify-between p-4 border-b border-gray-300">
+      <div class="flex items-center">
+        <img src="{{recever.profile.URL}}" alt="Profile Picture" class="w-10 h-10 rounded-full mr-4">
+        <div class="text-lg font-semibold">{{recever.username}} </div>
+        <div class="ml-4 text-blue-600" [routerLink]="['/product-details']"> {{product.brand.name}} {{
+          product.model.name}} </div>
+      </div>
+    </div>
+  
+  </div>
+  <div class=" h-[75%]  overflow-y-scroll">
+
+<!-- messages -->
+<div *ngFor="let message of messages" class="flex justify-end mb-4">
+  <div class="flex justify-start mb-4 relative" *ngIf="message.reciverId != logedUser else reciverMsg">
+    <div class="p-2 rounded bg-gray-200 relative">
+      <div class="font-semibold">
+        you
+      </div>
+      {{message.text}}
+      <div class="flex items-center text-xs text-gray-500 absolute bottom-0 right-0">
+        <mat-icon *ngIf="message.status=='unread'">done</mat-icon>
+        <mat-icon *ngIf="message.status=='delivered'">done_all</mat-icon>
+
+        <mat-icon class="text-blue-500" *ngIf="message.status=='read'">done_all</mat-icon>
+
+
+
+
+
+
+
+
+      </div>
+    </div>
+  </div>
+  <ng-template #reciverMsg>
+    <div class="flex justify-end mb-4">
+      <div class="p-2 rounded bg-blue-600 text-white">
+        <div class="font-semibold">
+          {{recever.username}}
+        </div>
+        {{message.text}}
+      </div>
+
+    </div>
+
+  </ng-template>
+</div>
+
+
+
+
+  </div>
+
+  <div class="flex items-center p-4 border-t border-gray-300 absolute bottom-0 right-0 left-0 ">
     <input [(ngModel)]="newMessage" class="flex-1 p-2 border rounded border-gray-300 mr-2"
       placeholder="Type your message...">
     <button (click)="sendMessage()"
       class="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring focus:ring-blue-300">Send</button>
   </div>
+  
+
 
 </div>
+

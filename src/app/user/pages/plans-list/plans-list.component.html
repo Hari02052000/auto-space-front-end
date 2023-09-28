@@ -1,4 +1,4 @@
-<section class="mt-36" *ngIf="plans$|async as plans">
+<section class="flex gap-2" *ngIf="plans$|async as plans">
     <div class="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow sm:p-8 dark:bg-gray-800 dark:border-gray-700"*ngFor="let plan of plans">
         <h5 class="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">{{plan.name}}</h5>
         <div class="flex items-baseline text-gray-900 dark:text-white">

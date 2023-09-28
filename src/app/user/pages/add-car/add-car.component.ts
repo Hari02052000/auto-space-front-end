@@ -95,6 +95,8 @@ export class AddCarComponent implements OnInit {
       if(res.productAdded){
 
         this.tosterservice.showCustomToast('success','your product is added')
+        this.router.navigate([''])
+
       }
       else if(res.err === 'alowedCars is zero'){
         this.tosterservice.showCustomToast('error','sorry car is not added please subscribe a plan ')

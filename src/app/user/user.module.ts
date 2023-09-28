@@ -6,6 +6,7 @@ import { UserComponent } from './user.component';
 import { FooterComponent } from './footer/footer.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { InterceptorService } from './service/interceptor/interceptor.service';
+import { LoadingComponent } from '../loading/loading.component';
 
 
 const routes: Routes = [
@@ -43,6 +44,7 @@ const routes: Routes = [
     UserComponent,
     NavbarComponent,
     FooterComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,

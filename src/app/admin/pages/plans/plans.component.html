@@ -5,6 +5,103 @@
         <h2>Add New plan</h2>
         <button mat-raised-button color="primary" (click)="openPlanDialog()">Add plan</button>
       </div>
+
+      <div class="relative overflow-x-auto shadow-md sm:rounded-lg ">
+        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr >
+                    <th scope="col" class="px-6 py-3">
+                      name
+                  </th>
+      
+                    <th scope="col" class="px-6 py-3">
+                        lsListed
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                      alowed cars
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+                      validity in months
+                    </th>
+                    <th scope="col" class="px-6 py-3">
+
+                      Amount
+    
+                    </th>
+                      <th scope="col" class="px-6 py-3">
+    
+                     </th>
+                     <th scope="col" class="px-6 py-3">
+    
+                     </th>
+
+
+
+                    
+      
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600" *ngFor="let plan of plans">
+      
+                    <td class="px-6 py-4">
+                      {{plan.name}}
+      
+                    </td>
+                    <td class="px-6 py-4">
+                      
+                      {{plan.isListed}}
+      
+                    </td>
+                     <td class="px-6 py-4">
+                      
+                      {{plan.no_of_cars}}
+      
+                    </td>
+                     <td class="px-6 py-4">
+                      
+                      {{plan.validity_in_months}}
+      
+                    </td>
+
+                    <td class="px-6 py-4">
+                      
+                      {{plan.Amount}}
+      
+                    </td>
+
+
+                     <td class="px-6 py-4">
+                      
+                     <mat-icon class="text-blue-600">edit</mat-icon>
+
+      
+                    </td>
+
+
+                    
+    
+                     
+                    <td class="px-6 py-4" *ngIf="!plan.isListed">
+                       
+                      <a  class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                      >List plan</a>
+      
+                    </td>
+      
+                    <td class="px-6 py-4" *ngIf="plan.isListed">
+                      
+                      <a  class="font-medium text-red-600 dark:text-red-500 hover:underline"
+                      >unlist plan</a>
+      
+                    </td>
+      
+      
+                </tr>
+            </tbody>
+        </table>
+      </div>
+      
       <mat-icon>visibility</mat-icon>
       <mat-icon>visibility_off</mat-icon>
       <mat-icon>edit</mat-icon>
