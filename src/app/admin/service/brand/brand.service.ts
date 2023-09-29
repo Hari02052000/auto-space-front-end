@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
-import { addBrandResponseInterface, addModelResponseInterface, editBrandResponseInterface, fetchBrandResponseInterface } from '../../interfaces/admin.product.interface';
+import { addBrandResponseInterface, addModelResponseInterface, addOptionResponseInterface, editBrandResponseInterface, fetchBrandResponseInterface } from '../../interfaces/admin.product.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -37,7 +37,7 @@ export class BrandService {
      return this.http.post<addModelResponseInterface>(`${this.baseUrl}/brand/add-model`,{modelName:modelName,brandId:brandId})
     }
     addOption(optionName:string,brandId:string,modelId:string){
-     return this.http.post<addModelResponseInterface>(`${this.baseUrl}/brand/add-option`,{optionName:optionName,brandId:brandId,modelId:modelId})
+     return this.http.post<addOptionResponseInterface>(`${this.baseUrl}/brand/add-option`,{optionName:optionName,brandId:brandId,modelId:modelId})
     }
 
     editbrand(brandName:string,id:string){

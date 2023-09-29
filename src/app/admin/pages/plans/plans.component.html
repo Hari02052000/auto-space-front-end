@@ -1,10 +1,22 @@
 
   <section>
+   <div class="flex justify-between">
 
     <div>
-        <h2>Add New plan</h2>
-        <button mat-raised-button color="primary" (click)="openPlanDialog()">Add plan</button>
-      </div>
+      <h2>Add New plan</h2>
+      <button mat-raised-button color="primary" (click)="openPlanDialog()">Add plan</button>
+    </div>
+
+    <div>
+      <h2>get the subscriptionDetails</h2>
+
+      <button mat-raised-button color="primary" (click)="openDownload()">supscription details</button>
+
+     </div>
+
+
+
+   </div>
 
       <div class="relative overflow-x-auto shadow-md sm:rounded-lg ">
         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
@@ -28,9 +40,9 @@
                       Amount
     
                     </th>
-                      <th scope="col" class="px-6 py-3">
+                      <!-- <th scope="col" class="px-6 py-3">
     
-                     </th>
+                     </th> -->
                      <th scope="col" class="px-6 py-3">
     
                      </th>
@@ -73,7 +85,7 @@
 
                      <td class="px-6 py-4">
                       
-                     <mat-icon class="text-blue-600">edit</mat-icon>
+                     <mat-icon class="text-blue-600" (click)="openeditPlan(plan._id)">edit</mat-icon>
 
       
                     </td>
@@ -82,7 +94,7 @@
                     
     
                      
-                    <td class="px-6 py-4" *ngIf="!plan.isListed">
+                    <!-- <td class="px-6 py-4" *ngIf="!plan.isListed">
                        
                       <a  class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                       >List plan</a>
@@ -95,16 +107,17 @@
                       >unlist plan</a>
       
                     </td>
-      
+       -->
       
                 </tr>
             </tbody>
         </table>
       </div>
-      
-      <mat-icon>visibility</mat-icon>
+      <!--  -->
+
+      <!-- <mat-icon>visibility</mat-icon>
       <mat-icon>visibility_off</mat-icon>
-      <mat-icon>edit</mat-icon>
+      <mat-icon>edit</mat-icon> -->
 
 
     

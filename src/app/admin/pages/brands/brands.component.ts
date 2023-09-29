@@ -135,6 +135,15 @@ export class BrandsComponent {
   
     openAddOptionDialog(modelId:string,brandId:string){
       this.addOptionDialogRef = this.dialog.open(AddOptionComponent,{data:{modelId:modelId,brandId:brandId}})
+
+      this.addOptionDialogRef.afterClosed().subscribe((res)=>{
+        if(res.option){
+          const brandToUpdate = this.brands?.find(brand => brand._id === brandId);
+          const ModelToUpdate = brandToUpdate?.models.find(model=>model._id === modelId)
+          ModelToUpdate?.options.push(res.option)
+
+        }
+      })
     }
   
     editOptionDialog(id:string){

@@ -1,4 +1,4 @@
-interface images {
+export interface images {
     URL:string,
     cloudinary_id:string
 }

@@ -44,7 +44,7 @@
         <label for="images" class="block text-gray-600">Images</label>
         <div  class="grid grid-cols-2 gap-4">
             <div class="relative" *ngFor="let image of product.images; let i = index">
-              <button class="absolute top-0 right-0 bg-red-500 text-white p-1 rounded-full" (click)="deleteimage(i)">x</button>
+              <button class="absolute top-0 right-0 bg-red-500 text-white p-1 rounded-full" (click)="deleteimage(i,product._id)">x</button>
               <img  src="{{image.URL}}" alt="Product Image" class="w-full h-auto rounded">
             </div>
         </div><br>
@@ -52,18 +52,24 @@
           upload new images
         </button><br>
         <label for="price">price</label><br>
-        <input type="text" id="price"><br>
+        <input type="text" id="price" [(ngModel)]="price"><br>
         <label for="price">year</label><br>
-        <input type="number" id="price"><br>
+        <input type="number" id="year" [(ngModel)]="year"><br>
         <label for="fuel">fuel</label><br>
-        <input type="text" id="fuel"><br>
+        <input type="text" id="fuel" [(ngModel)]="fuel"><br>
         <label for="kmDriven">kmDriven</label><br>
-        <input type="number" id="price"><br>
-        <label for="location">Locaction</label><br>
-        <input type="text" id="location"><br>
+        <input type="number" id="kmDriven"[(ngModel)]="kmDriven"><br>
+        <label for="location">Location</label><br>
+        <input type="text" id="location" [(ngModel)]="Location"><br>
         <label for="no_of_owners">no_of_owners</label><br>
-        <input type="number" id="no_of_owners"><br>
-        <button>update</button>
+        <input type="number" id="no_of_owners" [(ngModel)]="no_of_owners"><br>
+        <!-- <button>update</button> -->
+        <button class="relative inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-cyan-500 to-blue-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800" (click)="update(product._id)">
+          <span class="relative px-5 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0">
+            update
+          </span>
+        </button>
+
       </div>
     </div>
   </div>

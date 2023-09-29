@@ -41,6 +41,14 @@ export interface addModelResponseInterface{
     err?:string
 }
 
+export interface addOptionResponseInterface{
+    option:OptionInterface,
+    brandId:string
+    created?:boolean
+    err?:string
+}
+
+
 export interface addBrandResponseInterface{
     brand:addBrandSuccessInterface,
     created?:boolean

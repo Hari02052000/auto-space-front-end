@@ -1,15 +1,11 @@
-<h2 mat-dialog-title>Add New Brand</h2>
+<h2 mat-dialog-title>Add New plan</h2>
 
 <form [formGroup]="addPlanForm">
     
     <mat-dialog-content> 
-        <div class="err" *ngIf="addbrandErr$">
-            <p>{{addbrandErr$|async}}</p>
-
-        </div>
         <mat-form-field appearance="fill">
           <mat-label>plan Name</mat-label>
-          <input matInput formControlName="name" placeholder="brand name">
+          <input matInput formControlName="name" placeholder="plan name">
         </mat-form-field><br>
         <mat-form-field appearance="fill">
             <mat-label>Allowed cars</mat-label>

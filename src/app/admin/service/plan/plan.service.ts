@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
-import { fetchPlansResponseInterface } from '../../interfaces/admin.plan.interface';
+import { addplanResponseInterface, editplanResponseInterface, fetchPlansResponseInterface } from '../../interfaces/admin.plan.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +15,22 @@ export class PlanService {
     return this.http.get<fetchPlansResponseInterface>(`${this.baseUrl}/plans/get-plans`)
   }
 
-  addPlan(){}
+  getSubscriptionDetails(data:FormData){
 
-  editPlan(){}
+    return this.http.post(`${this.baseUrl}/plans/get-subscription-details`,data,{ responseType: 'blob' })
+
+  }
+
+  addPlan(data:FormData){
+    return this.http.post<addplanResponseInterface>(`${this.baseUrl}/plans/add-plan`,data)
+  }
+
+  editPlan(data:FormData){
+
+    return this.http.post<editplanResponseInterface>(`${this.baseUrl}/plans/edit-plan`,data)
+
+
+  }
 
   listPlan(){}
 

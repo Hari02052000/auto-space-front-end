@@ -1,0 +1,18 @@
+<form [formGroup]="subscriptionDetails">
+    
+    <mat-dialog-content> 
+        <mat-form-field appearance="fill">
+          <mat-label>from date</mat-label>
+          <input matInput formControlName="fromDate" type="date" placeholder="from date">
+        </mat-form-field><br>
+        <mat-form-field appearance="fill">
+            <mat-label>to Date</mat-label>
+            <input matInput formControlName="toDate" type="date" placeholder="to date">
+          </mat-form-field><br>
+      </mat-dialog-content>
+      <mat-dialog-actions>
+        <button mat-button mat-dialog-close>Cancel</button>
+        <button mat-raised-button color="primary" (click)="onSubmit()">download now</button>
+      </mat-dialog-actions>
+    
+</form>

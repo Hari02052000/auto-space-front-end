@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-model',
@@ -7,22 +9,22 @@ import { Component } from '@angular/core';
 })
 export class EditModelComponent {
 
-  // editModelForm:FormGroup
+  editModelForm:FormGroup
 
-  // constructor(public dialogRef: MatDialogRef<EditModelComponent>,private formBuilder: FormBuilder,private store:Store) {
-  //   this.editModelForm = this.formBuilder.group({
-  //     modeldName:['',Validators.required]
-  //   })
-  // }
+  constructor(public dialogRef: MatDialogRef<EditModelComponent>,private formBuilder: FormBuilder) {
+    this.editModelForm = this.formBuilder.group({
+      modeldName:['',Validators.required]
+    })
+  }
 
   
 
-  // onSubmit() {
+   onSubmit() {
   //   if (this.editModelForm.valid) {
 
      // this.store.dispatch(adminBrandAddingActions.brandFormSubmit(this.brandForm.value))
   //  }
-  //}
+  }
 
 
 

@@ -4,7 +4,6 @@ import { ListedVehiclesComponent } from './listed-vehicles/listed-vehicles.compo
 import { UsersListComponent } from './users-list/users-list.component';
 import { BrandsComponent } from './brands/brands.component';
 import { RouterModule, Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
 import { AddBrandComponent } from './add-brand/add-brand.component';
 import { EditBrandComponent } from './edit-brand/edit-brand.component';
 import { AddModelComponent } from './add-model/add-model.component';
@@ -16,27 +15,40 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PlansComponent } from './plans/plans.component';
 import { AddPlanComponent } from './plans/add-plan/add-plan.component';
 import { EditPlanComponent } from './plans/edit-plan/edit-plan.component';
+import { ConformationComponent } from './users-list/conformation/conformation.component';
+import { GetSubscriptionComponent } from './plans/get-subscription/get-subscription.component';
+import { authGuard } from '../guard/auth.guard';
 
 const routes:Routes = [
   {
     path:'',
-    component:BrandsComponent
+    component:BrandsComponent,
+    canActivate:[authGuard]
+
   },
   {
     path:'brands',
-    component:BrandsComponent
+    component:BrandsComponent,
+    canActivate:[authGuard]
+
   },
   {
     path:'user-list',
-    component:UsersListComponent
+    component:UsersListComponent,
+    canActivate:[authGuard]
+
   },
   {
     path:'vehicle-list',
-    component:ListedVehiclesComponent
+    component:ListedVehiclesComponent,
+    canActivate:[authGuard]
+
   },
   {
     path:'plan-list',
-    component:PlansComponent
+    component:PlansComponent,
+    canActivate:[authGuard]
+
   }
 ]
 
@@ -45,7 +57,6 @@ const routes:Routes = [
     ListedVehiclesComponent,
     UsersListComponent,
     BrandsComponent,
-    HomeComponent,
     AddBrandComponent,
     EditBrandComponent,
     AddModelComponent,
@@ -55,6 +66,8 @@ const routes:Routes = [
     PlansComponent,
     AddPlanComponent,
     EditPlanComponent,
+    ConformationComponent,
+    GetSubscriptionComponent,
   ],
   imports: [
     CommonModule,
