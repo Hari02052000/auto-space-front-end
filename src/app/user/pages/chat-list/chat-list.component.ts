@@ -10,8 +10,13 @@ import { newinteface } from 'src/app/models/fetch.chat.interface';
 export class ChatListComponent {
 
   chats:newinteface[] = []
+  isActive: boolean = false;
 
-  constructor(private chatservice:AuthService,private el: ElementRef, private renderer: Renderer2){}
+
+  constructor(private chatservice:AuthService,private el: ElementRef, private renderer: Renderer2){
+
+    
+  }
 
  ngOnInit(): void {
 

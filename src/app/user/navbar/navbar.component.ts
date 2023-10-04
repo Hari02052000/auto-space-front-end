@@ -88,6 +88,7 @@ export class NavbarComponent implements OnInit {
 
   makeZero() {
     this.newmsgs = 0
+    this.socket.emit('makeZero')
   }
 
 

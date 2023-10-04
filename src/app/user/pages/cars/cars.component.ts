@@ -42,6 +42,7 @@ constructor( private fetchProductservice:FetchProductServiceService,private rout
   searchfunction(){
 
     this.isLoading = true
+    console.log(this.filterOption)
 
     this.products$ =  this.fetchProductservice.searchProduct(this.search,this.sortBy,this.filterOption).pipe(
       tap(()=>{

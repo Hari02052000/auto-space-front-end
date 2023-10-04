@@ -30,8 +30,9 @@
   </div> -->
   
 
-  
-<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-20">
+  <app-loading *ngIf="isLoading"></app-loading>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg mt-20" *ngIf="products">
   <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
       <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
           <tr >
@@ -70,13 +71,21 @@
                 [routerLink]="['/edit-product',product._id]">Edit</a>
 
               </td>
+              <ng-container>
 
-              <!-- <td class="px-6 py-4">
+                <td class="px-6 py-4" *ngIf="!product.isSold else sold">
                 
-                <a  class="font-medium text-red-600 dark:text-red-500 hover:underline"
-                (click)="markSold(product._id)">mark as sold</a>
+                  <a  class="font-medium text-red-600 dark:text-red-500 hover:underline"
+                  (click)="markSold(product._id,product.brand.name,product.model.name,product.option.name)">mark as sold</a>
+  
+                </td>
+  
 
-              </td> -->
+              </ng-container>
+
+              <ng-template #sold>
+                <td class="text-gray-600">sold</td>
+              </ng-template>
 
 
           </tr>

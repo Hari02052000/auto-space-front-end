@@ -28,3 +28,7 @@ export interface updateProductResponseInterface{
     updated?:boolean,
     err?:string
 }
+
+export interface marksoldInterface{
+    marked?:boolean
+}

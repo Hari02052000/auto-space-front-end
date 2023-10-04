@@ -11,7 +11,7 @@ export class InterceptorService implements HttpInterceptor {
     
     let tokenizedReq = req.clone({
       setHeaders:{
-        userToken:`Bearer ${localStorage.getItem('userToken')}`
+        admintoken:`Bearer ${localStorage.getItem('adminToken')}`
       }
     })
     return next.handle(tokenizedReq)

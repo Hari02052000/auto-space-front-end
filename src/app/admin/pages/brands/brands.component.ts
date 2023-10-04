@@ -146,8 +146,25 @@ export class BrandsComponent {
       })
     }
   
-    editOptionDialog(id:string){
-      this.editOptionDialogRef = this.dialog.open(EditOptionComponent)
+    editOptionDialog(brandid:string,modelid:string,optionid:string,optionName:string){
+      this.editOptionDialogRef = this.dialog.open(EditOptionComponent,{data:{optionName:optionName,optionId:optionid}})
+
+      this.editOptionDialogRef.afterClosed().subscribe((res)=>{
+        if(res.optionname){
+          const brandToUpdate = this.brands?.find(brand => brand._id === brandid);
+
+          if(brandToUpdate){
+            const model = brandToUpdate.models.find(model=>model._id === modelid)
+            if(model){
+              const option = model.options.find(option=>option._id === optionid)
+              if(option){
+                option.name = res.optionname
+              }
+            }
+          }
+
+        }
+      })
     }
     editBrandDialog(brandname:string,id:string){
       this.editBrandDialogRef = this.dialog.open(EditBrandComponent,{data:{brandId:id,brandName:brandname}})
@@ -164,8 +181,24 @@ export class BrandsComponent {
 
       })
     }
-    editModelDialog(id:string){
-      this.editModelDialogRef = this.dialog.open(EditModelComponent)
+    editModelDialog(brandid:string,modelname:string,modelid:string){
+      this.editModelDialogRef = this.dialog.open(EditModelComponent,{data:{
+        modelName:modelname,modelId:modelid
+      }})
+      this.editModelDialogRef.afterClosed().subscribe((res)=>{
+        if(res.modelname){
+          
+          const brandToUpdate = this.brands?.find(brand => brand._id === brandid);
+
+          if(brandToUpdate){
+            const model = brandToUpdate.models.find(model=>model._id === modelid)
+            if(model)
+            model.name = res.modelname
+          }
+
+
+        }
+      })
     }
   
 }

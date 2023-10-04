@@ -23,7 +23,7 @@
                 <mat-expansion-panel-header >
                   <mat-panel-title >{{model.name}}</mat-panel-title>
 
-                  <button mat-icon-button (click)="editModelDialog('')">
+                  <button mat-icon-button (click)="editModelDialog(brand._id,model.name,model._id)">
                     <mat-icon>edit</mat-icon>
                   </button>
     
@@ -31,7 +31,7 @@
                 <mat-panel-description *ngFor = "let option of model.options">
                   <ul >
                     <li> {{option.name}}</li>
-                    <button mat-icon-button (click)="editOptionDialog('')">
+                    <button mat-icon-button (click)="editOptionDialog(brand._id,model._id,option._id,option.name)">
                         <mat-icon>edit</mat-icon>
                       </button>
     

@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../service/auth/auth.service';
 import { noSpacesValidator } from 'src/app/validators/no-space-validator';
 import { PasswordValidators } from 'src/app/validators/password-validaors'
-import { Subscription } from 'rxjs';
+import { Subject, Subscription, map, takeUntil } from 'rxjs';
 import { TosterService } from 'src/app/service/toster/toster.service';
 import { Router } from '@angular/router';
 
@@ -16,14 +16,18 @@ export class RegisterComponent {
 
   registerForm!: FormGroup;
   private subscription!: Subscription;
+  isLoading: boolean = false
+  private destroy$ = new Subject<void>();
+
 
 
 
   constructor(
     private authservice: AuthService,
     private formBuilder: FormBuilder,
-    private tosterservice:TosterService,
-    private router:Router
+    private tosterservice: TosterService,
+    private router: Router
+
 
 
   ) { }
@@ -56,36 +60,61 @@ export class RegisterComponent {
 
   registerSubmit() {
 
-    this.subscription = this.authservice.register(this.registerForm.value).subscribe((res) => {
-      if (res.err) {
+    this.isLoading = true
 
-        this.tosterservice.showCustomToast('error',res.err)
+    if (this.subscription && !this.subscription.closed) {
+      this.subscription.unsubscribe();
+    }
 
-      }
-      else if (res.access_token && res.userCreated && res.email) {
 
-        const event = new Event('userTokenChange');
-        window.dispatchEvent(event);
-        this.tosterservice.showCustomToast('success','please enter the otp in the registerd mail')
-         this.router.navigate(['/otp',res.email,false])
-      }
-    }, (err) => {
-      this.tosterservice.showCustomToast('error',err.error.message||'error')
+    this.subscription = this.registerFormSubmit$().pipe(takeUntil(this.destroy$))
+      .subscribe(
+        (res) => {
 
-    })
+          if (res.err) {
 
+            this.tosterservice.showCustomToast('error', res.err)
+
+          }
+          else if (res.access_token && res.userCreated && res.email) {
+
+            const event = new Event('userTokenChange');
+            window.dispatchEvent(event);
+            this.tosterservice.showCustomToast('success', 'please enter the otp in the registerd mail')
+            this.router.navigate(['/otp', res.email, false])
+          }
+        },
+        (err) => {
+          this.isLoading = false
+          console.log(err)
+          this.tosterservice.showCustomToast('error', err.message);
+        }
+      );
 
 
 
 
   }
 
+  private registerFormSubmit$() {
+
+    return this.authservice.register(this.registerForm.value).pipe(
+      map((res) => {
+        return res;
+      })
+    );
+
+
+  }
+
+
 
   ngOnDestroy(): void {
 
-    if (this.subscription) {
-
-      this.subscription.unsubscribe()
+    this.destroy$.next();
+    this.destroy$.complete();
+    if (this.subscription && !this.subscription.closed) {
+      this.subscription.unsubscribe();
     }
 
 

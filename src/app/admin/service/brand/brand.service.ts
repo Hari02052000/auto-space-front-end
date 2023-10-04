@@ -43,6 +43,16 @@ export class BrandService {
     editbrand(brandName:string,id:string){
       return this.http.post<editBrandResponseInterface>(`${this.baseUrl}/brand/edit-brand`,{brandName:brandName,id:id})
      }
+
+     editmodel(modelName:string,id:string){
+      return this.http.post<editBrandResponseInterface>(`${this.baseUrl}/brand/edit-model`,{modelName:modelName,id:id})
+     }
+
+     editoption(optionName:string,id:string){
+      return this.http.post<editBrandResponseInterface>(`${this.baseUrl}/brand/edit-option`,{optionName:optionName,id:id})
+     }
+
+
   
  
  

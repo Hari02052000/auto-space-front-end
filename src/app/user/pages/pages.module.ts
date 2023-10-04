@@ -25,6 +25,7 @@ import { OtpComponent } from './otp/otp.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { isTokenGuard } from '../guards/is-token.guard';
+import { LoadingComponent } from 'src/app/loading/loading.component';
 
 
 const routes:Routes = [
@@ -132,7 +133,8 @@ const routes:Routes = [
     PlansListComponent,
     OtpComponent,
     ForgotPasswordComponent,
-    ChangePasswordComponent
+    ChangePasswordComponent,
+    LoadingComponent
   ],
   imports: [
     CommonModule,

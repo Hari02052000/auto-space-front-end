@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.development';
-import { AddproductResponseInterface, imageRemovedResponseInterface, imageuploadResponseInterface, postedproducttResponseInterface, singleproducttResponseInterface, updateProductResponseInterface } from '../../models/add-product';
+import { AddproductResponseInterface, imageRemovedResponseInterface, imageuploadResponseInterface, marksoldInterface, postedproducttResponseInterface, singleproducttResponseInterface, updateProductResponseInterface } from '../../models/add-product';
 
 @Injectable({
   providedIn: 'root'
@@ -31,6 +31,11 @@ export class ProductService {
   getEditProductDetails(id:string){
 
     return this.http.get<singleproducttResponseInterface>(`${this.baseUrl}/user/products/edit-product/${id}`)
+
+  }
+  markAsSold(id:string){
+
+    return this.http.post<marksoldInterface>(`${this.baseUrl}/user/products/mark-sold`,{productid:id})
 
   }
   deleteImage(image:number,productId:string){

@@ -36,8 +36,6 @@ export class AddCarComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    //find user loged user,cheack the number of postes greater than 2 if greater than 2 add payment for that
-    //
     this.productService.fetchBrand().pipe(takeUntil(this.ngUnsubscribe)).subscribe((res) => this.brands = res.brand)
 
 

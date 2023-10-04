@@ -61,39 +61,26 @@
 
 
                  
-                <!-- <td class="px-6 py-4">
-                   
-                  <a  class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                  >
-                  
-                  <mat-icon>visibility</mat-icon>
-
-                
-
-                </a>
-  
-                </td> -->
-
                 <td class="px-6 py-4" *ngIf="!product.isListed && !product.isSold ">
                    
                   <a  class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
-                  >List vechicle</a>
+                  (click)="listvehicle(product._id,product.brand.name,product.model.name,product.option.name)">List vechicle</a>
   
                 </td>
   
                 <td class="px-6 py-4" *ngIf="product.isListed && !product.isSold ">
                   
                   <a  class="font-medium text-red-600 dark:text-red-500 hover:underline"
-                  >unlist product</a>
+                 (click)="unlistvehicle(product._id,product.brand.name,product.model.name,product.option.name)" >unlist product</a>
   
                 </td>
 
-                <!-- <td class="px-6 py-4" *ngIf="product.isSold">
+                <td class="px-6 py-4" *ngIf="product.isSold">
                   
                   <a  class="font-medium text-stone-600"
                   >sold out</a>
   
-                </td> -->
+                </td>
 
   
 

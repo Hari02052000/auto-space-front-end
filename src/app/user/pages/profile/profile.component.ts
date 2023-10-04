@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-
+//user blocked   //user not verified
   private subscription!: Subscription;
   user!: userInterface;
   username:string=''

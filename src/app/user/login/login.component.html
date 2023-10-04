@@ -44,6 +44,9 @@
     </div>
    </div> -->
 
+   <app-loading *ngIf="isLoading"></app-loading>
+
+
    <div class="min-h-screen flex items-center justify-center bg-gray-100">
     <div class="max-w-md bg-white w-full p-8 shadow-lg rounded-lg">
       <h2 class="text-2xl mb-4">Login</h2>
@@ -66,11 +69,10 @@
           </div>
         </div>
   
-        <button type="submit" [disabled]="loginForm.invalid" class="bg-blue-500 text-white hover:bg-blue-600 px-4 py-2 rounded-full w-full disabled:bg-gray-300 disabled:text-gray-500 cursor-not-allowed">
+        <button type="submit" [disabled]="loginForm.invalid" class="bg-blue-500 text-white hover:bg-blue-600 px-4 py-2 rounded-full w-full cursor-pointer  disabled:bg-gray-300 disabled:text-gray-500 ">
           Sign In
         </button>
   
-        <!-- Forgot Password and Register Links -->
         <div class="flex justify-between mt-4">
           <p class="text-center mt-4">
             <a [routerLink]="['/forgot-password']" class="text-blue-500 hover:underline">Forgot password</a>

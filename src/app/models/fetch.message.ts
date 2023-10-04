@@ -44,6 +44,7 @@ export interface userInterface{
     email:string,
     username:string,
     isBlocked:boolean,
-    profile:userprofile
+    profile:userprofile,
+    alowedCars:number
 }
 

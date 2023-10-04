@@ -6,6 +6,8 @@ import { RouterModule, Routes } from '@angular/router';
 import { MatComponentsModule } from '../mat-components/mat-components.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { InterceptorService } from './service/interceptor/interceptor';
 
 
 
@@ -43,6 +45,15 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatComponentsModule,
     RouterModule.forChild(routes)
+  ],
+  providers:[
+    {
+      provide:HTTP_INTERCEPTORS,
+      useClass:InterceptorService,
+      multi:true
+    },
+
   ]
+
 })
 export class AdminModule { }

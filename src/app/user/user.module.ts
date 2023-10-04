@@ -44,7 +44,6 @@ const routes: Routes = [
     UserComponent,
     NavbarComponent,
     FooterComponent,
-    LoadingComponent
   ],
   imports: [
     CommonModule,

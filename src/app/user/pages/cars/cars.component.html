@@ -5,12 +5,7 @@
   </div>
 </div> -->
 
-<div class="loading-spinner " *ngIf="isLoading">
-
-  <div class="lds-roller"><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div></div>
-</div>
-
-
+<app-loading *ngIf="isLoading"></app-loading>
 <div class="container mx-auto py-8 ">
   <div class="flex flex-col md:flex-row space-y-4 md:space-y-0 md:space-x-4">
     <div class="flex-grow">
@@ -39,41 +34,47 @@
       </select>
     </div>
 
-    <div class="relative">
-      <div class="space-x-2 mb-3" *ngIf="brands$|async as brands">
-        <label class="inline-flex items-center px-4 py-2 bg-gray-200 rounded-full cursor-pointer">
-          <input
-            type="radio"
-            name="filterOption"
-            value="undefined"
-            autocomplete="off"
-            [(ngModel)]="filterOption"
-            (ngModelChange)="searchfunction()"
-            class="form-radio h-5 w-5 text-indigo-600"
-
-          />
-          All
-        </label>
-
-        <ng-container *ngFor="let brand of brands">
-          <label class="inline-flex items-center px-4 py-2 bg-gray-200 rounded-full cursor-pointer">
-            <input
-              type="radio"
-              name="filterOption"
-              [value]="brand._id"
-              autocomplete="off"
-              [(ngModel)]="filterOption"
-              (ngModelChange)="searchfunction()"
-              class="form-radio h-5 w-5 text-indigo-600"
-
-            />
-            {{ brand.name }}
-          </label>
-          
-        </ng-container>
-      </div>
-    </div>
   </div>
+
+  <div class="space-x-2 mb-3 mt-3" *ngIf="brands$|async as brands">
+    <label class="label-tab inline-flex items-center px-4 py-2 rounded-full cursor-pointer">
+      <input
+        type="radio"
+        name="filterOption"
+        value="undefined"
+        autocomplete="off"
+        [(ngModel)]="filterOption"
+        (ngModelChange)="searchfunction()"
+        class="form-radio h-5 w-5 text-indigo-600"
+
+      />
+      All
+      <div class="input-indicator" *ngIf="!filterOption || filterOption === 'undefined'"></div>
+
+    </label>
+
+    <ng-container *ngFor="let brand of brands">
+      <label class="label-tab inline-flex items-center px-4 py-2 rounded-full cursor-pointer">
+        <input
+          type="radio"
+          name="filterOption"
+          [value]="brand._id"
+          autocomplete="off"
+          [(ngModel)]="filterOption"
+          (ngModelChange)="searchfunction()"
+          
+
+        />
+
+        {{ brand.name }}
+
+        <div class="input-indicator" *ngIf="filterOption === brand._id"></div>
+
+      </label>
+      
+    </ng-container>
+  </div>
+
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" *ngIf="products$ | async as products ">
     <ng-container *ngIf="products.length>0 else noproducts">
