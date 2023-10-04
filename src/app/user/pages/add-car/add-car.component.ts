@@ -100,6 +100,11 @@ export class AddCarComponent implements OnInit {
         this.tosterservice.showCustomToast('error','sorry car is not added please subscribe a plan ')
         this.router.navigate(['/plans-list'])
       }
+      else if(res.err === 'your plan is expaired'){
+        this.tosterservice.showCustomToast('error','sorry car is not added your plan is expaired please subscribe a plan ')
+        this.router.navigate(['/plans-list'])
+
+      }
       else if(res.err) {
         this.tosterservice.showCustomToast('error',res.err)
       }

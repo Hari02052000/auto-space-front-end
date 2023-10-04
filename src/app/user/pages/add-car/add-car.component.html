@@ -1,5 +1,5 @@
 
-   <div class="container mx-auto ">
+   <div class="container mx-auto mt-4">
     <!-- Step Indicator -->
     <ol class="flex items-center w-full text-sm font-medium text-center text-gray-500 dark:text-gray-400 sm:text-base">
       <li class="flex md:w-full items-center" [ngClass]="{ 'text-blue-600 dark:text-blue-500': step === 1 }">
@@ -111,13 +111,13 @@
         </div>
   
         <!-- Previous button -->
-        <button class="bg-blue-500 text-white px-4 py-2 rounded" (click)="prevStep()" *ngIf="step > 1">Previous</button>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer" (click)="prevStep()" *ngIf="step > 1">Previous</button>
   
         <!-- Next button with [disabled] attribute -->
-        <button class="bg-blue-500 text-white px-4 py-2 rounded            disabled:bg-gray-300 disabled:text-gray-500 cursor-not-allowed" (click)="nextStep(step + 1)" *ngIf="step < 3" [disabled]="!isCurrentFormValid()">Next</button>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer           disabled:bg-gray-300 disabled:text-gray-500 " (click)="nextStep(step + 1)" *ngIf="step < 3" [disabled]="!isCurrentFormValid()">Next</button>
   
         <!-- Submit button with [disabled] attribute -->
-        <button class="bg-blue-500 text-white px-4 py-2 rounded            disabled:bg-gray-300 disabled:text-gray-500 cursor-not-allowed" (click)="submitForm()" *ngIf="step === 3" [disabled]="!isCurrentFormValid()">Submit</button>
+        <button class="bg-blue-500 text-white px-4 py-2 rounded cursor-pointer            disabled:bg-gray-300 disabled:text-gray-500" (click)="submitForm()" *ngIf="step === 3" [disabled]="!isCurrentFormValid()">Submit</button>
       </div>
     </div>
   </div>
