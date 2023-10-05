@@ -58,6 +58,10 @@
 </div> -->
 
 <div class="h-[71vh] overflow-hidden relative "  *ngIf="product && recever && messages">
+
+  <div class="sending" *ngIf="sending">
+  <p class="text-lg">sending...  </p>
+  </div>
   <div class="h-[16%] w-[100%]  ">
 
     <div class="flex items-center justify-between p-4 border-b border-gray-300">

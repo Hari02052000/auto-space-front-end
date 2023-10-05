@@ -2,7 +2,8 @@ import { images, productInterface } from "src/app/models/fetch.products.interfac
 
 export interface AddproductResponseInterface{
     productAdded?:boolean,
-    err?:string
+    err?:string,
+    email?:string
 }
 export interface singleproducttResponseInterface{
     product?:productInterface

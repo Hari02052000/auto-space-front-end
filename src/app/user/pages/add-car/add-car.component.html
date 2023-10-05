@@ -73,8 +73,14 @@
           <form [formGroup]="formStep2" *ngIf="step === 2">
             <!-- Your form fields for step 2 here -->
             <div class="mb-4">
-              <label for="fuel" class="block text-gray-600">fuel</label><br>
-              <input type="text" id="fuel" formControlName="fuel" class="form-input w-full mt-2">
+              <label for="fuel" class="block text-gray-600">fuel:</label>
+              <select id="fuel" formControlName="fuel" class="form-input w-full mt-2">
+                <option value="">Select a fuel</option>
+                <option value="petrole">petrole</option>
+                <option value="deisel">deisel</option>
+                <option value="cng">cng</option>
+                <option value="electric">electric</option>
+              </select>
             </div>
             <div class="mb-4">
               <label for="price" class="block text-gray-600">price</label>

@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import {  Router } from '@angular/router';
-import { Observable, finalize, map, tap } from 'rxjs';
+import { Observable, Subscription, finalize, map, tap } from 'rxjs';
 import { brand, productInterface } from 'src/app/models/fetch.products.interface';
 import { FetchProductServiceService } from 'src/app/service/fetch-product-service.service';
 
@@ -9,7 +9,7 @@ import { FetchProductServiceService } from 'src/app/service/fetch-product-servic
   templateUrl: './cars.component.html',
   styleUrls: ['./cars.component.css']
 })
-export class CarsComponent implements OnInit {
+export class CarsComponent implements OnInit,OnDestroy {
 
   products$: Observable<productInterface[]|undefined> | undefined;
   brands$: Observable<brand[]|undefined> | undefined;
@@ -17,7 +17,7 @@ export class CarsComponent implements OnInit {
   filterOption:string|undefined
   sortBy:string|undefined
   isLoading!: boolean;
-
+  subscription!:Subscription
 
 constructor( private fetchProductservice:FetchProductServiceService,private router:Router ){}
 
@@ -31,7 +31,7 @@ constructor( private fetchProductservice:FetchProductServiceService,private rout
     this.brands$ = response$.pipe(map((res)=>res.brands))
 
     this.products$ = response$.pipe(map((res)=>res.products))
-    response$.subscribe(
+  this.subscription  =  response$.subscribe(
       (data) => {
         this.isLoading = false
       }
@@ -42,7 +42,6 @@ constructor( private fetchProductservice:FetchProductServiceService,private rout
   searchfunction(){
 
     this.isLoading = true
-    console.log(this.filterOption)
 
     this.products$ =  this.fetchProductservice.searchProduct(this.search,this.sortBy,this.filterOption).pipe(
       tap(()=>{
@@ -59,8 +58,13 @@ constructor( private fetchProductservice:FetchProductServiceService,private rout
 
   }
 
+  ngOnDestroy(): void {
+    if(this.subscription){
+      this.subscription.unsubscribe()
+    }
+  }
 
-    // fetch the brands and cars
+
   }
 
 

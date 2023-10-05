@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../service/auth/auth.service';
@@ -11,20 +11,20 @@ import { PasswordValidators } from 'src/app/validators/password-validaors';
   templateUrl: './change-password.component.html',
   styleUrls: ['./change-password.component.css']
 })
-export class ChangePasswordComponent {
+export class ChangePasswordComponent implements OnInit, OnDestroy {
 
   changePasswordForm!: FormGroup;
   private subscription!: Subscription;
-  email!:string|null
+  email!: string | null
 
 
 
   constructor(
     private authservice: AuthService,
     private formBuilder: FormBuilder,
-    private tosterservice:TosterService,
+    private tosterservice: TosterService,
     private activeRoute: ActivatedRoute,
-    private router:Router
+    private router: Router
 
 
   ) { }
@@ -55,26 +55,26 @@ export class ChangePasswordComponent {
     const password = this.changePasswordForm.get('password')?.value
     const confpassword = this.changePasswordForm.get('confpassword')?.value
 
-    if(password && confpassword && this.email)
+    if (password && confpassword && this.email)
 
 
-    this.subscription = this.authservice.changePassword(this.email,password,confpassword).subscribe((res) => {
-      if (res.err) {
+      this.subscription = this.authservice.changePassword(this.email, password, confpassword).subscribe((res) => {
+        if (res.err) {
 
-        this.tosterservice.showCustomToast('error',res.err)
+          this.tosterservice.showCustomToast('error', res.err)
 
-      }
-      else if (res.isPasswordChanged) {
+        }
+        else if (res.isPasswordChanged) {
 
-        localStorage.removeItem('userToken')
+          localStorage.removeItem('userToken')
 
-        this.tosterservice.showCustomToast('success','password updated please login to continue')
-         this.router.navigate(['/login'])
-      }
-    }, (err) => {
-      this.tosterservice.showCustomToast('error',err.error.message||'error')
+          this.tosterservice.showCustomToast('success', 'password updated please login to continue')
+          this.router.navigate(['/login'])
+        }
+      }, (err) => {
+        this.tosterservice.showCustomToast('error', err.error.message || 'error')
 
-    })
+      })
 
 
 

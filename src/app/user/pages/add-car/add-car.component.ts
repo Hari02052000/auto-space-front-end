@@ -1,25 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Subject, takeUntil } from 'rxjs';
+import { Subject, Subscription, takeUntil } from 'rxjs';
 import { BrandInterface, OptionInterface, modelInterface } from 'src/app/models/fetch.brand.interface';
 import { FetchProductServiceService } from 'src/app/service/fetch-product-service.service';
 import { ProductService } from '../../service/product/product.service';
 import { TosterService } from 'src/app/service/toster/toster.service';
 import { Router } from '@angular/router';
+import { noSpacesValidator } from 'src/app/validators/no-space-validator';
+import { yearValidator } from 'src/app/validators/year-validator';
 
 @Component({
   selector: 'app-add-car',
   templateUrl: './add-car.component.html',
   styleUrls: ['./add-car.component.css']
 })
-export class AddCarComponent implements OnInit {
+export class AddCarComponent implements OnInit, OnDestroy {
 
   brands: BrandInterface[] | undefined
   selectedBrand: BrandInterface | undefined;
   selectedOption: OptionInterface | undefined;
   selectedModel: modelInterface | undefined;
   selectedImages: File[] = []
-
+  subscription!: Subscription;
 
   formStep1!: FormGroup;
   formStep2!: FormGroup;
@@ -32,8 +34,8 @@ export class AddCarComponent implements OnInit {
 
 
 
-  constructor(private formBuilder: FormBuilder, private productService: FetchProductServiceService, private productAddService: ProductService, private tosterservice: TosterService, private router:Router
-    ) { }
+  constructor(private formBuilder: FormBuilder, private productService: FetchProductServiceService, private productAddService: ProductService, private tosterservice: TosterService, private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.productService.fetchBrand().pipe(takeUntil(this.ngUnsubscribe)).subscribe((res) => this.brands = res.brand)
@@ -46,7 +48,7 @@ export class AddCarComponent implements OnInit {
       brand: ['', Validators.required],
       model: ['', Validators.required],
       option: ['', Validators.required],
-      year: ['', Validators.required]
+      year: ['', [Validators.required, yearValidator()]]
 
     });
 
@@ -89,27 +91,37 @@ export class AddCarComponent implements OnInit {
     delete formFields.images;
     const jsonData = JSON.stringify(formFields);
     productForm.append('formFields', jsonData);
-    this.productAddService.addProduct(productForm).subscribe((res) => {
-      if(res.productAdded){
+    this.subscription = this.productAddService.addProduct(productForm).subscribe((res) => {
+      if (res.productAdded) {
 
-        this.tosterservice.showCustomToast('success','your product is added')
+        this.tosterservice.showCustomToast('success', 'your product is added')
         this.router.navigate([''])
 
       }
-      else if(res.err === 'alowedCars is zero'){
-        this.tosterservice.showCustomToast('error','sorry car is not added please subscribe a plan ')
+      else if (res.err === 'user blocked') {
+
+      }
+      else if (res.err === 'user not verified' && res.email) {
+
+        this.tosterservice.showCustomToast('warning', 'your product not added please verify email')
+
+        this.router.navigate(['/otp', res.email, false])
+
+      }
+      else if (res.err === 'alowedCars is zero') {
+        this.tosterservice.showCustomToast('error', 'sorry car is not added please subscribe a plan ')
         this.router.navigate(['/plans-list'])
       }
-      else if(res.err === 'your plan is expaired'){
-        this.tosterservice.showCustomToast('error','sorry car is not added your plan is expaired please subscribe a plan ')
+      else if (res.err === 'your plan is expaired') {
+        this.tosterservice.showCustomToast('error', 'sorry car is not added your plan is expaired please subscribe a plan ')
         this.router.navigate(['/plans-list'])
 
       }
-      else if(res.err) {
-        this.tosterservice.showCustomToast('error',res.err)
+      else if (res.err) {
+        this.tosterservice.showCustomToast('error', res.err)
       }
-    },(err)=>{
-      this.tosterservice.showCustomToast('error',err.error.message || 'error')
+    }, (err) => {
+      this.tosterservice.showCustomToast('error', err.error.message || 'error')
     })
 
   }
@@ -148,7 +160,11 @@ export class AddCarComponent implements OnInit {
 
   }
 
-
+  ngOnDestroy(): void {
+    if (this.subscription) {
+      this.subscription.unsubscribe()
+    }
+  }
 
 
 }

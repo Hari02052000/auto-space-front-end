@@ -24,6 +24,7 @@ export class ChatComponent {
   routeSubscription!: Subscription;
   msgSubscription!: Subscription;
   product!: productInterface;
+  sending: boolean = false
 
   @ViewChild('scrollContainer')
   scrollContainer!: ElementRef;
@@ -38,7 +39,6 @@ export class ChatComponent {
       concatMap(params => {
         const recevierid: string = params['recevierid'];
         const productid = params['productid'];
-        console.log(recevierid, productid);
         this.handleRouteChange()
         return this.userservice.getMessage(recevierid, productid)
       })
@@ -70,8 +70,9 @@ export class ChatComponent {
 
     this.socket.on('chat-saved', (newChat: SingleMessageInterface) => {
 
-      console.log('new chat create', this.socket.id, newChat)
+
       this.messages.push(newChat)
+      this.sending = false
 
       this.newMessage = ''
       this.scrollToBottom()
@@ -93,9 +94,9 @@ export class ChatComponent {
       const container = this.scrollContainer.nativeElement;
       container.scrollTop = container.scrollHeight;
 
-    } 
+    }
 
-    catch(err) { 
+    catch (err) {
       alert(err)
     }
   }
@@ -112,8 +113,11 @@ export class ChatComponent {
       recevierid: recevierid,
       text: this.newMessage,
     };
-    
+
     this.socket.emit('sendMessage', message);
+
+    this.sending = true
+    this.newMessage = ''
 
 
   }

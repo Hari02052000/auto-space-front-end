@@ -16,7 +16,7 @@ export class LoginComponent implements OnInit {
 
   form!: FormGroup;
   public Submitted: boolean = false
-  isLoading:boolean = false
+  isLoading: boolean = false
 
 
   constructor(
@@ -78,32 +78,9 @@ export class LoginComponent implements OnInit {
         },
         (err) => {
           this.isLoading = false
-          console.log(err)
           this.toster.showCustomToast('error', err.message);
         }
       );
-
-
-    // this.subscription = this.authservice.login(this.loginForm.value).subscribe((res) => {
-    //   if (res.err) {
-
-    //     this.toster.showCustomToast('error', res.err)
-
-    //   }
-    //   else if (res.access_token && res.isUser) {
-
-    //     const event = new Event('userTokenChange');
-    //     window.dispatchEvent(event);
-
-    //     this.router.navigate([''])
-    //     this.toster.showCustomToast('success', 'Login Successful');
-
-    //   }
-    // }, (err) => {
-    //   this.toster.showCustomToast('error', err.error.message)
-    // })
-
-
 
   }
 
@@ -114,7 +91,7 @@ export class LoginComponent implements OnInit {
         return res;
       })
     );
-  
+
 
   }
 
@@ -127,7 +104,7 @@ export class LoginComponent implements OnInit {
     if (this.subscription && !this.subscription.closed) {
       this.subscription.unsubscribe();
     }
-  
+
 
 
   }
