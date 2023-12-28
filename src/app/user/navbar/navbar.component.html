@@ -112,7 +112,7 @@
             type="button"
             class="inline-flex relative items-center font-medium justify-center px-4 py-2 text-sm text-gray-900 dark:text-white rounded-lg cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white transition duration-300 ease-in-out"
           >
-            <img
+            <img 
               src="{{user.profile.URL}}"
               alt=""
               class="h-9 mr-2 rounded-full"
@@ -127,10 +127,10 @@
           </button>
           <!-- Dropdown Menu -->
           <div
-            class="z-50  my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700"
-
+          class="z-50 absolute top-full right-0 w-48 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700"
+          *ngIf="isDropdownOpen"
           >
-            <ul class="py-2 font-medium" role="none" *ngIf="isDropdownOpen">
+            <ul class="py-2 font-medium" role="none" >
               <li class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100" [routerLink]="['profile']" >
                 Profile
               </li>

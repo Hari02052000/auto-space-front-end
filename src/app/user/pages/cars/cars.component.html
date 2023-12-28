@@ -21,7 +21,7 @@
         [(ngModel)]="sortBy"
         (ngModelChange)="searchfunction()"
       >
-        <option value="km asc">kmDriven:lower to higher</option>
+        <option value="km asc" >kmDriven:lower to higher</option>
         <option value="km dsc">kmDriven:higher to lower</option>
         <option value="price asc">price:lower to higher</option>
         <option value="price dsc">price:higher to lower</option>
@@ -72,10 +72,10 @@
 
 
   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4" *ngIf="products$ | async as products ">
-    <ng-container *ngIf="products.length>0 else noproducts">
+    <ng-container *ngIf="products && products.length>0 else noproducts">
     <ng-container *ngFor="let product of products">
       <div class="bg-gradient-to-b from-gray-50 to-gray-100 text-black rounded-lg shadow-lg">
-        <img [src]="product.images[0].URL" alt="{{ product.brand.name }}" class="h-64 object-contain" />
+        <img [src]="getFirstImageURL(product)" alt="{{ product.brand.name }}" class="h-64 object-contain" />
         <div class="p-4">
           <h3 class="text-xl font-semibold">{{ product.brand.name }} {{ product.model.name }}</h3>
           <p class="card-text">{{ product.option.name }} {{ product.fuel }}</p>
@@ -94,28 +94,6 @@
         </div>
       </div>
       
-      <!-- <div
-      class="bg-white text-black rounded-lg shadow-lg overflow-hidden"
-    >
-      <img
-        [src]="product.images[0].URL"
-        alt="{{ product.brand.name }}"
-        class="h-64 w-full object-cover"
-      />
-      <div class="p-4">
-        <h3 class="text-xl font-semibold">
-          {{ product.brand.name }} {{ product.model.name }}
-        </h3>
-        <p class="text-gray-600">{{ product.option.name }}</p>
-        <p class="font-bold text-xl">RS: {{ product.price }}</p>
-
-        <button
-          class="mt-2 px-4 py-2 text-sm font-medium text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300"
-        >
-          Details
-        </button>
-      </div>
-    </div> -->
 
     </ng-container>
   </ng-container>

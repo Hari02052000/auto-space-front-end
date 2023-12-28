@@ -3,6 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, Subscription, concatMap } from 'rxjs';
 import { Socket, io } from 'socket.io-client';
 import { AuthService } from '../../service/auth/auth.service';
+import { TosterService } from 'src/app/service/toster/toster.service';
 import { SingleMessageInterface, userInterface } from 'src/app/models/fetch.message';
 import { productInterface } from 'src/app/models/fetch.products.interface';
 import { environment } from 'src/environments/environment.development';
@@ -31,7 +32,8 @@ export class ChatComponent {
 
 
   constructor(private route: ActivatedRoute,
-    private userservice: AuthService
+    private userservice: AuthService,
+    private toster:TosterService
   ) { }
   ngOnInit(): void {
 
@@ -106,18 +108,25 @@ export class ChatComponent {
 
   sendMessage() {
 
-    const recevierid = this.route.snapshot.params['recevierid'];
-    const productid = this.route.snapshot.params['productid'];
-    const message = {
-      productid: productid,
-      recevierid: recevierid,
-      text: this.newMessage,
-    };
+    if(this.newMessage){
+      const recevierid = this.route.snapshot.params['recevierid'];
+      const productid = this.route.snapshot.params['productid'];
+      const message = {
+        productid: productid,
+        recevierid: recevierid,
+        text: this.newMessage,
+      };
+  
+      this.socket.emit('sendMessage', message);
+  
+      this.sending = true
+      this.newMessage = ''
+  
+    }
+    else{
+      this.toster.showCustomToast('error','enter a message')
+    }
 
-    this.socket.emit('sendMessage', message);
-
-    this.sending = true
-    this.newMessage = ''
 
 
   }

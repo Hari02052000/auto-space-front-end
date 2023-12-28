@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import {  Router } from '@angular/router';
-import { Observable, Subscription, finalize, map, tap } from 'rxjs';
+import { Observable, Subscription,  map, tap } from 'rxjs';
 import { brand, productInterface } from 'src/app/models/fetch.products.interface';
 import { FetchProductServiceService } from 'src/app/service/fetch-product-service.service';
 
@@ -49,6 +49,11 @@ constructor( private fetchProductservice:FetchProductServiceService,private rout
       }),
       map(response => response.products)
     )
+
+  }
+  getFirstImageURL(product:productInterface):string|undefined{
+    return product.images && product.images[0] ? product.images[0].URL : undefined;
+
 
   }
 
